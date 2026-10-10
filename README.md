@@ -31,8 +31,8 @@ MCU 重置或斷電時 DAC 輸出歸零（nRESET 外部下拉）。完整規格�
 | 層級 | 負責 | 不負責 |
 |---|---|---|
 | Host PC | 掃描設定、資料紀錄、擬合、SAX 模型、凍結預測與留出驗證 | 任何需要即時時序的動作（含雷射控制） |
-| GIGA R1 韌體 | DAC 寫入、settle 等待、ADC 取樣（CONVST / BAS / DMA）、平均與標準差、暫態波形暫存於 SDRAM、MAX\_CODE 與斜率限制、watchdog、上電自檢、**雷射控制（UART SCPI）** | 模型與決策 |
-| 硬體（DAC EVM、被動轉接、電源） | POR / nRESET 歸零、探針分壓上限、電源限流、過溫關斷 | 最後一道防線，不依賴軟體 |
+| GIGA R1 韌體 | DAC 寫入、settle 等待、ADC 取樣（CONVST / BAS / DMA）、平均與標準差、暫態波形暫存於 SDRAM、MAX\_CODE 與斜率限制、watchdog、上電自檢、**雷射控制（UART SCPI）**、被動板 GPIO（預留 MOS 開關）與分壓回授（內建 ADC） | 模型與決策 |
+| 硬體（DAC EVM、被動轉接、電源） | POR / nRESET 歸零、探針分壓上限（參考可取 VDD–DAC）、電源限流、過溫關斷 | 最後一道防線，不依賴軟體 |
 
 ### 主要元件
 

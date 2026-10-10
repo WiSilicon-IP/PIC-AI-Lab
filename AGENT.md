@@ -23,6 +23,7 @@
 - **CONVST 由硬體 timer 產生**，不依賴軟體延遲，確保取樣時序精確。
 - **暫態波形存 SDRAM**，再經 USB CDC 倒出；不做即時串流。
 - **雷射控制**：可調雷射由 GIGA UART（Serial1/2/3）以 SCPI 文字命令控制波長與功率，不經 Host PC。若雷射為 RS-232 介面需加 MAX3232 電壓轉換。
+- **被動轉接板介面**：GIGA GPIO 預留給板上 MOS 開關（未來擴充）；板上分壓抽頭另接回 GIGA 內建 ADC，做校正與偵測，不佔 ADS9324 通道。
 - Arduino core 建在 Mbed OS 上，SPI DMA 與 timer 觸發需直接使用 STM32 HAL。
 
 ## 3. Host PC 軟體（Python）
@@ -51,6 +52,7 @@
 ## 6. 電源設計
 
 - 實驗室電源最大 60 V，預設 40 V 給 DAC VCC，限流支路保護。LM2596S 從限流之前取電。
+- 被動轉接板預留 VCC 參考輸入：探針分壓參考可取 VDD–DAC 兩端，不限定 DAC–GND。
 - 限流動作時只有加熱器掉電，MCU 與 ADC 不受影響。
 - GIGA 由 USB 供電，不從高壓取電。
 - LM2596S-ADJ 輸入上限 40 V：若電源超過 40 V 需改用 LM2596HV 或獨立降壓模組。
