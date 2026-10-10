@@ -145,8 +145,12 @@ EVM（DC392）為 FMC + FPGA 設計，接 3.3 V MCU 需五項改板：
 | `docs/adr/` | 架構決策紀錄（ADR） |
 | `datasheets/` | 元件 datasheet，依類別分資料夾：`adc/`、`dac/`、`pd/`、`mcu/` |
 | `firmware/` | Arduino GIGA R1 韌體（待開發） |
-| `sw/` | Host PC 端 Python 掃描腳本與資料處理（待開發） |
+| `sw/` | Host PC 端 Python（待開發） |
+| `sw/measure/` | 階段一：掃描腳本與資料處理 |
+| `sw/calib/` | 階段二：閉迴路校正、SAX 模型、留出驗證 |
+| `sw/compute/` | 階段三：權重 → 相位 → 電壓映射、運算排程、誤差回讀 |
 | `sw/scripts/` | 工具腳本 |
+| `data/calib/` | 校正表（JSON，依晶片 ID 與日期分資料夾，含版本與驗證誤差） |
 | `hw/` | 硬體設計檔案 |
 | `hw/passive-board/` | 被動轉接板（探針分壓、shunt） |
 
