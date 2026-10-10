@@ -11,8 +11,8 @@
   <rect width="1670" height="1110" fill="#FFFDF7" rx="4"/>
 
   <!-- Title -->
-  <text x="835" y="44" text-anchor="middle" font-size="23" font-weight="700" fill="#2E2A22">PIC 量測系統架構</text>
-  <text x="835" y="68" text-anchor="middle" font-size="14" fill="#8B8168">GIGA R1 WiFi 控制、DAC81416-08EVM 驅動、ADS9324EVM 讀取、MEMS 探針 + 多級 MZI 晶片</text>
+  <text x="835" y="44" text-anchor="middle" font-size="23" font-weight="700" fill="#2E2A22">PIC-AI-Lab・階段一：量測系統架構</text>
+  <text x="835" y="68" text-anchor="middle" font-size="14" fill="#8B8168">AI 自動量測 → 自動校正 → 光子運算的共用骨架：GIGA R1 WiFi 控制、DAC81416-08EVM 驅動、ADS9324EVM 讀取</text>
 
   <!-- Legend -->
   <line x1="60" y1="112" x2="92" y2="112" stroke="#B8860B" stroke-width="2.6" marker-end="url(#ao)"/>
@@ -256,5 +256,5 @@
 
   <!-- ── Footer ── -->
   <text x="835" y="1060" text-anchor="middle" font-size="12" fill="#8B8168">探針上限由 VCC × 分壓比在硬體上決定；MCU 重置或斷電時 DAC 輸出歸零（nRESET 外部下拉）</text>
-  <text x="835" y="1082" text-anchor="middle" font-size="12" fill="#8B8168">v3・GIGA R1 WiFi + ADS9324EVM（改板）+ DAC81416-08EVM・2026-10-10</text>
+  <text x="835" y="1082" text-anchor="middle" font-size="12" fill="#8B8168">PIC-AI-Lab v3・GIGA R1 WiFi + ADS9324EVM（改板）+ DAC81416-08EVM・2026-10-10</text>
 </svg>
