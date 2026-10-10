@@ -27,47 +27,47 @@
   <text x="644" y="76" font-size="10.5" fill="#5B5342">電源</text>
 
   <!-- ================================================================ -->
-  <!--  ROW 1  (y 100–270):  Laser / DAC / Si Chip                     -->
+  <!--  ROW 1  (y 92–270):  Laser / DAC / Si Chip                      -->
   <!-- ================================================================ -->
 
-  <!-- Tunable Laser -->
-  <rect x="30" y="110" width="210" height="76" rx="8" fill="#FAF6EA" stroke="#C2AE7E" stroke-width="1.4"/>
-  <text x="135" y="136" text-anchor="middle" font-size="14" font-weight="700" fill="#2E2A22">可調雷射</text>
-  <text x="135" y="154" text-anchor="middle" font-size="11" fill="#5B5342">C-band・1550 nm</text>
-  <text x="135" y="172" text-anchor="middle" font-size="10" fill="#8B8168">波長 / 功率：GIGA UART SCPI</text>
+  <!-- Tunable Laser — raised to y=92 for spacing from heater line -->
+  <rect x="30" y="92" width="210" height="76" rx="8" fill="#FAF6EA" stroke="#C2AE7E" stroke-width="1.4"/>
+  <text x="135" y="118" text-anchor="middle" font-size="14" font-weight="700" fill="#2E2A22">可調雷射</text>
+  <text x="135" y="136" text-anchor="middle" font-size="11" fill="#5B5342">C-band・1550 nm</text>
+  <text x="135" y="156" text-anchor="middle" font-size="10" fill="#8B8168">波長 / 功率：GIGA UART SCPI</text>
 
   <!-- DAC81416-08EVM -->
-  <rect x="300" y="110" width="260" height="160" rx="8" fill="#F8E9E3" stroke="#B5533C" stroke-width="1.4"/>
-  <text x="430" y="134" text-anchor="middle" font-size="14" font-weight="700" fill="#B5533C">DAC81416-08EVM</text>
-  <text x="430" y="152" text-anchor="middle" font-size="11" fill="#5B5342">16 ch・20-bit・0–40 V</text>
-  <rect x="318" y="164" width="224" height="28" rx="5" fill="#FFFDF7" stroke="#B5533C" stroke-width="0.9"/>
-  <text x="430" y="183" text-anchor="middle" font-size="10.5" fill="#5B5342">CH0–7：heater 0–40 V（直接接晶片）</text>
-  <rect x="318" y="198" width="224" height="28" rx="5" fill="#FFFDF7" stroke="#B5533C" stroke-width="0.9"/>
-  <text x="430" y="217" text-anchor="middle" font-size="10.5" fill="#5B5342">CH8–11：probe 0–40 V（經被動分壓）</text>
-  <text x="430" y="256" text-anchor="middle" font-size="9.5" fill="#8B8168">VCC 36 V・POR 歸零・過溫關斷・J18 開路</text>
+  <rect x="300" y="120" width="260" height="160" rx="8" fill="#F8E9E3" stroke="#B5533C" stroke-width="1.4"/>
+  <text x="430" y="144" text-anchor="middle" font-size="14" font-weight="700" fill="#B5533C">DAC81416-08EVM</text>
+  <text x="430" y="162" text-anchor="middle" font-size="11" fill="#5B5342">16 ch・20-bit・0–40 V</text>
+  <rect x="318" y="174" width="224" height="28" rx="5" fill="#FFFDF7" stroke="#B5533C" stroke-width="0.9"/>
+  <text x="430" y="193" text-anchor="middle" font-size="10.5" fill="#5B5342">CH0–7：heater 0–40 V（直接接晶片）</text>
+  <rect x="318" y="208" width="224" height="28" rx="5" fill="#FFFDF7" stroke="#B5533C" stroke-width="0.9"/>
+  <text x="430" y="227" text-anchor="middle" font-size="10.5" fill="#5B5342">CH8–11：probe 0–40 V（經被動分壓）</text>
+  <text x="430" y="266" text-anchor="middle" font-size="9.5" fill="#8B8168">VCC 36 V・POR 歸零・過溫關斷・J18 開路</text>
 
-  <!-- Si Photonic Chip (DUT) — tall block on the right -->
-  <rect x="860" y="110" width="210" height="380" rx="10" fill="#FAF6EA" stroke="#C2AE7E" stroke-width="1.6"/>
-  <text x="965" y="134" text-anchor="middle" font-size="15" font-weight="700" fill="#2E2A22">Si 光子晶片</text>
-  <text x="965" y="154" text-anchor="middle" font-size="11" fill="#5B5342">SOI 220 nm・1550 nm</text>
-  <rect x="880" y="170" width="170" height="56" rx="6" fill="#FFFDF7" stroke="#C2AE7E" stroke-width="1.1"/>
-  <text x="965" y="190" text-anchor="middle" font-size="12" font-weight="600" fill="#2E2A22">多顆可調 MZI</text>
-  <text x="965" y="208" text-anchor="middle" font-size="10.5" fill="#5B5342">加熱器 θ₁ / θ₂・約 40 V → 2π</text>
-  <rect x="880" y="238" width="170" height="56" rx="6" fill="#FFFDF7" stroke="#C2AE7E" stroke-width="1.1"/>
-  <text x="965" y="258" text-anchor="middle" font-size="12" font-weight="600" fill="#2E2A22">4 支 MEMS 探針</text>
-  <text x="965" y="274" text-anchor="middle" font-size="10.5" fill="#5B5342">可變 tap・0–7 V・pull-in 風險</text>
-  <rect x="880" y="306" width="170" height="46" rx="6" fill="#FFFDF7" stroke="#C2AE7E" stroke-width="1.1"/>
-  <text x="965" y="324" text-anchor="middle" font-size="12" font-weight="600" fill="#2E2A22">探針光柵（向上出光）</text>
-  <text x="965" y="340" text-anchor="middle" font-size="10.5" fill="#5B5342">一柵一 PD</text>
-  <rect x="880" y="364" width="170" height="46" rx="6" fill="#FFFDF7" stroke="#C2AE7E" stroke-width="1.1"/>
-  <text x="965" y="382" text-anchor="middle" font-size="12" font-weight="600" fill="#2E2A22">主輸出光纖埠</text>
-  <text x="965" y="398" text-anchor="middle" font-size="10.5" fill="#5B5342">解耦參考</text>
-  <rect x="880" y="422" width="170" height="30" rx="6" fill="#FFFDF7" stroke="#C2AE7E" stroke-width="1.1"/>
-  <text x="965" y="442" text-anchor="middle" font-size="10.5" fill="#5B5342">heater 回流端・串 shunt</text>
+  <!-- Si Photonic Chip (DUT) -->
+  <rect x="860" y="120" width="210" height="370" rx="10" fill="#FAF6EA" stroke="#C2AE7E" stroke-width="1.6"/>
+  <text x="965" y="144" text-anchor="middle" font-size="15" font-weight="700" fill="#2E2A22">Si 光子晶片</text>
+  <text x="965" y="164" text-anchor="middle" font-size="11" fill="#5B5342">SOI 220 nm・1550 nm</text>
+  <rect x="880" y="178" width="170" height="56" rx="6" fill="#FFFDF7" stroke="#C2AE7E" stroke-width="1.1"/>
+  <text x="965" y="198" text-anchor="middle" font-size="12" font-weight="600" fill="#2E2A22">多顆可調 MZI</text>
+  <text x="965" y="216" text-anchor="middle" font-size="10.5" fill="#5B5342">加熱器 θ₁ / θ₂・約 40 V → 2π</text>
+  <rect x="880" y="248" width="170" height="56" rx="6" fill="#FFFDF7" stroke="#C2AE7E" stroke-width="1.1"/>
+  <text x="965" y="268" text-anchor="middle" font-size="12" font-weight="600" fill="#2E2A22">4 支 MEMS 探針</text>
+  <text x="965" y="284" text-anchor="middle" font-size="10.5" fill="#5B5342">可變 tap・0–7 V・pull-in 風險</text>
+  <rect x="880" y="316" width="170" height="46" rx="6" fill="#FFFDF7" stroke="#C2AE7E" stroke-width="1.1"/>
+  <text x="965" y="334" text-anchor="middle" font-size="12" font-weight="600" fill="#2E2A22">探針光柵（向上出光）</text>
+  <text x="965" y="350" text-anchor="middle" font-size="10.5" fill="#5B5342">一柵一 PD</text>
+  <rect x="880" y="374" width="170" height="46" rx="6" fill="#FFFDF7" stroke="#C2AE7E" stroke-width="1.1"/>
+  <text x="965" y="392" text-anchor="middle" font-size="12" font-weight="600" fill="#2E2A22">主輸出光纖埠</text>
+  <text x="965" y="408" text-anchor="middle" font-size="10.5" fill="#5B5342">解耦參考</text>
+  <rect x="880" y="432" width="170" height="30" rx="6" fill="#FFFDF7" stroke="#C2AE7E" stroke-width="1.1"/>
+  <text x="965" y="452" text-anchor="middle" font-size="10.5" fill="#5B5342">heater 回流端・串 shunt</text>
   <text x="965" y="478" text-anchor="middle" font-size="9.5" fill="#8B8168">拓樸待確認</text>
 
   <!-- ================================================================ -->
-  <!--  ROW 2  (y 310–480):  Host PC / GIGA R1 / Passive Board          -->
+  <!--  ROW 2  (y 320–490):  Host PC / GIGA R1 / Passive Board          -->
   <!-- ================================================================ -->
 
   <!-- Host PC -->
@@ -94,19 +94,19 @@
   <rect x="318" y="450" width="224" height="26" rx="5" fill="#FFFDF7" stroke="#3A5BA8" stroke-width="0.9"/>
   <text x="430" y="468" text-anchor="middle" font-size="10.5" fill="#5B5342">SPI-A→DAC　SPI-B→ADC　UART→Laser</text>
 
-  <!-- Passive Board — positioned between DAC/Chip and ADC/PD -->
-  <rect x="630" y="310" width="180" height="140" rx="8" fill="#F8E9E3" stroke="#B5533C" stroke-width="1.4"/>
-  <text x="720" y="336" text-anchor="middle" font-size="13" font-weight="700" fill="#B5533C">被動轉接板</text>
-  <text x="720" y="354" text-anchor="middle" font-size="10.5" fill="#8B8168">無主動元件、無 MUX</text>
-  <rect x="648" y="366" width="144" height="24" rx="4" fill="#FFFDF7" stroke="#B5533C" stroke-width="0.8"/>
-  <text x="720" y="383" text-anchor="middle" font-size="10.5" fill="#5B5342">probe 分壓 → ≤ 7 V</text>
-  <rect x="648" y="396" width="144" height="24" rx="4" fill="#FFFDF7" stroke="#B5533C" stroke-width="0.8"/>
-  <text x="720" y="413" text-anchor="middle" font-size="10.5" fill="#5B5342">R_bot 抽頭 → ADC</text>
-  <rect x="648" y="426" width="144" height="24" rx="4" fill="#FFFDF7" stroke="#B5533C" stroke-width="0.8"/>
-  <text x="720" y="443" text-anchor="middle" font-size="10.5" fill="#5B5342">heater shunt → ADC</text>
+  <!-- Passive Board -->
+  <rect x="630" y="320" width="180" height="140" rx="8" fill="#F8E9E3" stroke="#B5533C" stroke-width="1.4"/>
+  <text x="720" y="346" text-anchor="middle" font-size="13" font-weight="700" fill="#B5533C">被動轉接板</text>
+  <text x="720" y="364" text-anchor="middle" font-size="10.5" fill="#8B8168">無主動元件、無 MUX</text>
+  <rect x="648" y="376" width="144" height="24" rx="4" fill="#FFFDF7" stroke="#B5533C" stroke-width="0.8"/>
+  <text x="720" y="393" text-anchor="middle" font-size="10.5" fill="#5B5342">probe 分壓 → ≤ 7 V</text>
+  <rect x="648" y="406" width="144" height="24" rx="4" fill="#FFFDF7" stroke="#B5533C" stroke-width="0.8"/>
+  <text x="720" y="423" text-anchor="middle" font-size="10.5" fill="#5B5342">R_bot 抽頭 → ADC</text>
+  <rect x="648" y="436" width="144" height="24" rx="4" fill="#FFFDF7" stroke="#B5533C" stroke-width="0.8"/>
+  <text x="720" y="453" text-anchor="middle" font-size="10.5" fill="#5B5342">heater shunt → ADC</text>
 
   <!-- ================================================================ -->
-  <!--  ROW 3  (y 540–710):  Power / ADC / PD                           -->
+  <!--  ROW 3  (y 540–710):  Power / ADC / PD (below chip)              -->
   <!-- ================================================================ -->
 
   <!-- Power Supply -->
@@ -128,55 +128,55 @@
   <text x="430" y="671" text-anchor="middle" font-size="10.5" fill="#5B5342">片上 oversampling・25 / 325 kHz BW</text>
   <text x="430" y="700" text-anchor="middle" font-size="9.5" fill="#8B8168">J19 ← 5.3 V・板上 LDO 出 5 / 1.8 / 3.3 V</text>
 
-  <!-- PD Modules — taller to fit content -->
-  <rect x="630" y="540" width="180" height="170" rx="8" fill="#E4F1EE" stroke="#1F8A7D" stroke-width="1.4"/>
-  <text x="720" y="564" text-anchor="middle" font-size="13" font-weight="700" fill="#1F8A7D">PD 模組</text>
-  <text x="720" y="584" text-anchor="middle" font-size="11" fill="#5B5342">InGaAs・帶放大</text>
-  <text x="720" y="600" text-anchor="middle" font-size="11" fill="#5B5342">（PDA10CS2）</text>
-  <rect x="648" y="614" width="144" height="24" rx="4" fill="#FFFDF7" stroke="#1F8A7D" stroke-width="0.8"/>
-  <text x="720" y="631" text-anchor="middle" font-size="10.5" fill="#5B5342">探針光柵 PD ×4</text>
-  <rect x="648" y="644" width="144" height="24" rx="4" fill="#FFFDF7" stroke="#1F8A7D" stroke-width="0.8"/>
-  <text x="720" y="661" text-anchor="middle" font-size="10.5" fill="#5B5342">主輸出 PD ×N</text>
-  <rect x="648" y="674" width="144" height="24" rx="4" fill="#FFFDF7" stroke="#1F8A7D" stroke-width="0.8"/>
-  <text x="720" y="691" text-anchor="middle" font-size="10.5" fill="#5B5342">輸入參考 PD ×1</text>
+  <!-- PD Modules — moved to below Si Chip (same column) -->
+  <rect x="860" y="540" width="210" height="170" rx="8" fill="#E4F1EE" stroke="#1F8A7D" stroke-width="1.4"/>
+  <text x="965" y="564" text-anchor="middle" font-size="13" font-weight="700" fill="#1F8A7D">PD 模組</text>
+  <text x="965" y="584" text-anchor="middle" font-size="11" fill="#5B5342">InGaAs・帶放大（PDA10CS2）</text>
+  <rect x="878" y="600" width="174" height="24" rx="4" fill="#FFFDF7" stroke="#1F8A7D" stroke-width="0.8"/>
+  <text x="965" y="617" text-anchor="middle" font-size="10.5" fill="#5B5342">探針光柵 PD ×4</text>
+  <rect x="878" y="630" width="174" height="24" rx="4" fill="#FFFDF7" stroke="#1F8A7D" stroke-width="0.8"/>
+  <text x="965" y="647" text-anchor="middle" font-size="10.5" fill="#5B5342">主輸出 PD ×N</text>
+  <rect x="878" y="660" width="174" height="24" rx="4" fill="#FFFDF7" stroke="#1F8A7D" stroke-width="0.8"/>
+  <text x="965" y="677" text-anchor="middle" font-size="10.5" fill="#5B5342">輸入參考 PD ×1</text>
+  <text x="965" y="700" text-anchor="middle" font-size="9.5" fill="#8B8168">一柵一 PD・TIA 增益配合條紋滿刻度</text>
 
   <!-- ================================================================ -->
   <!--  CONNECTIONS                                                      -->
   <!-- ================================================================ -->
 
-  <!-- ── Optical ── -->
+  <!-- ── Optical (gold) ── -->
 
-  <!-- Laser → Si Chip: fiber routed above DAC block -->
-  <path d="M240,148 L270,148 L270,96 L835,96 L835,140 L856,140" fill="none" stroke="#B8860B" stroke-width="2.2" marker-end="url(#ao)"/>
-  <text x="550" y="90" text-anchor="middle" font-size="10" fill="#B8860B">光纖輸入（晶片外分光：輸入參考 → PD）</text>
+  <!-- Laser → Si Chip: fiber routed above DAC -->
+  <path d="M240,130 L262,130 L262,88 L840,88 L840,130 L856,130" fill="none" stroke="#B8860B" stroke-width="2.2" marker-end="url(#ao)"/>
+  <text x="550" y="82" text-anchor="middle" font-size="10" fill="#B8860B">光纖輸入（晶片外分光：輸入參考 → PD）</text>
 
-  <!-- Si Chip → PD: grating/fiber output, route down then left into PD top -->
-  <path d="M965,490 L965,520 L720,520 L720,536" fill="none" stroke="#B8860B" stroke-width="2.2" marker-end="url(#ao)"/>
-  <text x="860" y="515" font-size="10" fill="#B8860B">光柵 / 光纖出光</text>
+  <!-- Si Chip → PD: short vertical drop -->
+  <line x1="965" y1="490" x2="965" y2="536" stroke="#B8860B" stroke-width="2.2" marker-end="url(#ao)"/>
+  <text x="980" y="518" font-size="10" fill="#B8860B">光柵 / 光纖出光</text>
 
   <!-- ── HV Drive (red) ── -->
 
-  <!-- DAC → Chip: heater direct, route above passive board -->
-  <path d="M560,178 L856,178" fill="none" stroke="#B5533C" stroke-width="2.2" marker-end="url(#ah)"/>
-  <text x="710" y="172" font-size="10" fill="#B5533C">heater 0–40 V（直接接晶片）</text>
+  <!-- DAC → Chip: heater direct -->
+  <path d="M560,188 L856,188" fill="none" stroke="#B5533C" stroke-width="2.2" marker-end="url(#ah)"/>
+  <text x="710" y="182" font-size="10" fill="#B5533C">heater 0–40 V（直接接晶片）</text>
 
-  <!-- DAC → Passive Board: probe voltage -->
-  <path d="M560,212 L590,212 L590,380 L626,380" fill="none" stroke="#B5533C" stroke-width="2" marker-end="url(#ah)"/>
-  <text x="600" y="296" font-size="10" fill="#B5533C" transform="rotate(90,600,296)">probe 0–40 V</text>
+  <!-- DAC → Passive Board: probe voltage, route down through gap -->
+  <path d="M560,222 L590,222 L590,390 L626,390" fill="none" stroke="#B5533C" stroke-width="2" marker-end="url(#ah)"/>
+  <text x="600" y="306" font-size="10" fill="#B5533C" transform="rotate(90,600,306)">probe 0–40 V</text>
 
   <!-- Passive Board → Chip: limited probe voltage -->
-  <path d="M810,350 L856,350" fill="none" stroke="#B5533C" stroke-width="2.2" marker-end="url(#ah)"/>
-  <text x="833" y="342" text-anchor="middle" font-size="9.5" fill="#B5533C">≤ 7 V</text>
+  <path d="M810,360 L856,360" fill="none" stroke="#B5533C" stroke-width="2.2" marker-end="url(#ah)"/>
+  <text x="833" y="352" text-anchor="middle" font-size="9.5" fill="#B5533C">≤ 7 V</text>
 
   <!-- ── Analog (teal) ── -->
 
-  <!-- Passive Board → ADC: shunt & probe tap, route down through gap -->
-  <path d="M720,450 L720,520 L560,520 L560,540" fill="none" stroke="#1F8A7D" stroke-width="2" marker-end="url(#aa)"/>
-  <text x="654" y="516" font-size="10" fill="#1F8A7D">shunt・探針抽頭</text>
+  <!-- Passive Board → ADC: shunt & probe tap -->
+  <path d="M720,460 L720,520 L564,520 L564,540" fill="none" stroke="#1F8A7D" stroke-width="2" marker-end="url(#aa)"/>
+  <text x="650" y="514" font-size="10" fill="#1F8A7D">shunt・探針抽頭</text>
 
-  <!-- PD → ADC: PD voltage -->
-  <path d="M630,640 L564,640" fill="none" stroke="#1F8A7D" stroke-width="2" marker-end="url(#aa)"/>
-  <text x="590" y="633" font-size="10" fill="#1F8A7D">PD 電壓</text>
+  <!-- PD → ADC: PD voltage, horizontal from PD left to ADC right -->
+  <path d="M856,640 L564,640" fill="none" stroke="#1F8A7D" stroke-width="2" marker-end="url(#aa)"/>
+  <text x="710" y="633" font-size="10" fill="#1F8A7D">PD 電壓</text>
 
   <!-- ── Digital (blue) ── -->
 
@@ -185,24 +185,24 @@
   <text x="255" y="372" font-size="10" fill="#3A5BA8">USB CDC</text>
 
   <!-- GIGA → Laser: UART SCPI, route through gap between rows 1 & 2 -->
-  <path d="M350,320 L350,290 L135,290 L135,190" fill="none" stroke="#3A5BA8" stroke-width="2" marker-end="url(#ad)"/>
-  <text x="240" y="284" font-size="10" fill="#3A5BA8">UART SCPI</text>
+  <path d="M350,320 L350,295 L135,295 L135,172" fill="none" stroke="#3A5BA8" stroke-width="2" marker-end="url(#ad)"/>
+  <text x="240" y="289" font-size="10" fill="#3A5BA8">UART SCPI</text>
 
-  <!-- GIGA → DAC: SPI-A (vertical, through gap) -->
-  <line x1="430" y1="320" x2="430" y2="274" stroke="#3A5BA8" stroke-width="2" marker-end="url(#ad)"/>
-  <text x="438" y="300" font-size="10" fill="#3A5BA8">SPI-A・nLDAC・nRESET</text>
+  <!-- GIGA → DAC: SPI-A -->
+  <line x1="430" y1="320" x2="430" y2="284" stroke="#3A5BA8" stroke-width="2" marker-end="url(#ad)"/>
+  <text x="438" y="306" font-size="10" fill="#3A5BA8">SPI-A・nLDAC・nRESET</text>
 
-  <!-- GIGA → ADC: SPI-B (vertical, through gap) -->
+  <!-- GIGA → ADC: SPI-B -->
   <line x1="430" y1="490" x2="430" y2="536" stroke="#3A5BA8" stroke-width="2" marker-end="url(#ad)"/>
   <text x="438" y="518" font-size="10" fill="#3A5BA8">SPI-B・CONVST・BAS</text>
 
   <!-- ── Power (gray dashed) ── -->
 
-  <!-- Power → DAC VCC: route right then up through gap between col 1 & 2 -->
-  <path d="M240,590 L272,590 L272,190 L296,190" fill="none" stroke="#8B8168" stroke-width="1.6" stroke-dasharray="5 3" marker-end="url(#ap)"/>
-  <text x="262" y="400" font-size="9.5" fill="#8B8168">36 V</text>
+  <!-- Power → DAC VCC: route through gap between col 1 & 2 -->
+  <path d="M240,590 L272,590 L272,200 L296,200" fill="none" stroke="#8B8168" stroke-width="1.6" stroke-dasharray="5 3" marker-end="url(#ap)"/>
+  <text x="262" y="410" font-size="9.5" fill="#8B8168">36 V</text>
 
-  <!-- Power → ADC: 5.3 V, short horizontal -->
+  <!-- Power → ADC: 5.3 V -->
   <path d="M240,625 L296,625" fill="none" stroke="#8B8168" stroke-width="1.6" stroke-dasharray="5 3" marker-end="url(#ap)"/>
   <text x="255" y="618" font-size="9.5" fill="#8B8168">5.3 V</text>
 
