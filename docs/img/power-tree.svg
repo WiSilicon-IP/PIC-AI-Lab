@@ -9,13 +9,13 @@
 
   <!-- Title -->
   <text x="530" y="30" text-anchor="middle" font-size="19" font-weight="700" fill="#2E2A22">電源樹</text>
-  <text x="530" y="50" text-anchor="middle" font-size="12" fill="#8B8168">單一 36 V 來源・限流只在 DAC 支路・限流動作時 MCU 與 ADC 不受影響</text>
+  <text x="530" y="50" text-anchor="middle" font-size="12" fill="#8B8168">實驗室電源最大 60 V・預設 40 V・限流只在 DAC 支路・限流動作時 MCU 與 ADC 不受影響</text>
 
   <!-- ========== Lab Supply ========== -->
   <rect x="30" y="110" width="180" height="90" rx="8" fill="#FFFDF7" stroke="#8B8168" stroke-width="1.6" stroke-dasharray="5 3"/>
   <text x="120" y="136" text-anchor="middle" font-size="14" font-weight="700" fill="#5B5342">實驗室電源</text>
-  <text x="120" y="156" text-anchor="middle" font-size="12" font-weight="600" fill="#2E2A22">36 V</text>
-  <text x="120" y="174" text-anchor="middle" font-size="10" fill="#8B8168">E0 後視需要升至 38–40 V</text>
+  <text x="120" y="156" text-anchor="middle" font-size="12" font-weight="600" fill="#2E2A22">最大 60 V（預設 40 V）</text>
+  <text x="120" y="174" text-anchor="middle" font-size="10" fill="#8B8168">E0 後視 R_h 調整實際電壓</text>
   <text x="120" y="190" text-anchor="middle" font-size="10" fill="#8B8168">所有軌同時上下電</text>
 
   <!-- ========== Current Limiter ========== -->
@@ -32,8 +32,8 @@
   <!-- ========== LM2596S ========== -->
   <rect x="290" y="160" width="130" height="80" rx="7" fill="#FFFDF7" stroke="#8B8168" stroke-width="1.4"/>
   <text x="355" y="184" text-anchor="middle" font-size="13" font-weight="700" fill="#5B5342">LM2596S</text>
-  <text x="355" y="202" text-anchor="middle" font-size="12" font-weight="600" fill="#2E2A22">36 V → 5.3 V</text>
-  <text x="355" y="218" text-anchor="middle" font-size="9.5" fill="#8B8168">輸入耐壓 ≥ 50 V 電容</text>
+  <text x="355" y="202" text-anchor="middle" font-size="12" font-weight="600" fill="#2E2A22">≤ 60 V → 5.3 V</text>
+  <text x="355" y="218" text-anchor="middle" font-size="9.5" fill="#8B8168">輸入耐壓 ≥ 80 V 電容</text>
   <text x="355" y="232" text-anchor="middle" font-size="9.5" fill="#8B8168">輸出 +100 µF</text>
 
   <!-- ========== ADS9324EVM J19 ========== -->
@@ -68,7 +68,7 @@
 
   <!-- 36V → Current Limiter -->
   <path d="M210,150 L250,150 L250,105 L286,105" fill="none" stroke="#8B8168" stroke-width="2" marker-end="url(#pw)"/>
-  <text x="225" y="142" font-size="10" fill="#8B8168">36 V</text>
+  <text x="218" y="142" font-size="10" fill="#8B8168">40 V（預設）</text>
 
   <!-- Current Limiter → DAC VCC -->
   <line x1="420" y1="105" x2="496" y2="105" stroke="#8B8168" stroke-width="2" marker-end="url(#pw)"/>
@@ -89,5 +89,5 @@
 
   <!-- Footer -->
   <text x="530" y="348" text-anchor="middle" font-size="10" fill="#8B8168">限流只放在 DAC VCC 支路，LM2596S 從限流之前取電：限流動作時只有加熱器掉電，MCU 與 ADC 不會跟著重置而丟資料</text>
-  <text x="530" y="366" text-anchor="middle" font-size="10" fill="#8B8168">GIGA 由 USB 供電，不從 36 V 取電（VIN 排針需 ≥ 6 V，不用）</text>
+  <text x="530" y="366" text-anchor="middle" font-size="10" fill="#8B8168">GIGA 由 USB 供電，不從高壓取電（VIN 排針需 ≥ 6 V，不用）</text>
 </svg>

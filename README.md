@@ -15,7 +15,7 @@ PIC 量測系統是一套針對 **SOI 220 nm 矽光子（PIC）晶片** 設計�
 | 暫態頻寬 | ≤ 325 kHz | 加熱器熱時間常數、探針機械響應 |
 | 光偵測器 | InGaAs PD 模組（PDA10CS2） | 一柵一 PD，最多 4 探針 + 主輸出 + 參考 |
 | Host PC | Python 掃描腳本、SAX 模型、擬合 | USB CDC，不在即時迴路內（雷射由 GIGA UART 控制） |
-| 電源 | 36 V 實驗室電源（限流）→ DAC VCC | LM2596S 降壓 5.3 V → ADS9324EVM |
+| 電源 | 60 V max 實驗室電源（限流）→ DAC VCC 預設 40 V | LM2596S 降壓 5.3 V → ADS9324EVM |
 | 狀態 | **v3 規劃值，零件待購、datasheet 待核** | 2026-10-08 |
 
 ## 系統架構
@@ -42,7 +42,7 @@ MCU 重置或斷電時 DAC 輸出歸零（nRESET 外部下拉）。完整規格�
 | DAC | DAC81416-08EVM（16 ch，20-bit） | 加熱器驅動（0–40 V）、探針驅動（經分壓） | [`datasheets/dac/`](datasheets/dac/) |
 | ADC | ADS9324EVM（16 ch，16-bit SAR，1 MSPS） | 光功率、shunt 電流、探針電壓讀取 | [`datasheets/adc/`](datasheets/adc/) |
 | PD | Thorlabs PDA10CS2（InGaAs） | 1550 nm 光偵測，帶放大 | [`datasheets/pd/`](datasheets/pd/) |
-| 降壓模組 | LM2596S | 36 V → 5.3 V 給 ADS9324EVM | — |
+| 降壓模組 | LM2596S | ≤ 60 V → 5.3 V 給 ADS9324EVM | — |
 | 保護二極體 | BAT54A（SOT23） | ADC 輸入保護 | [`datasheets/adc/`](datasheets/adc/) |
 
 ### 通道配置
@@ -79,11 +79,11 @@ MZI 輸出 I ≈ (I₀/2)(1 + V cos φ)，正交點 dI/dφ ≈ I₀V/2。條紋�
 
 ## 電源樹
 
-![電源樹：36 V 電源分成限流支路給 DAC VCC，與 LM2596S 降壓支路給 ADS9324EVM；GIGA 由 USB 供電](docs/img/power-tree.svg)
+![電源樹：60 V max 電源（預設 40 V）分成限流支路給 DAC VCC，與 LM2596S 降壓支路給 ADS9324EVM；GIGA 由 USB 供電](docs/img/power-tree.svg)
 
 | 軌 | 來源 | 電壓 | 負載 |
 |---|---|---|---|
-| DAC VCC | 實驗室電源 → 限流 | 36 V（可升至 40 V） | 加熱器、探針分壓、DAC 輸出級耗散 |
+| DAC VCC | 實驗室電源 → 限流 | 預設 40 V（電源最大 60 V） | 加熱器、探針分壓、DAC 輸出級耗散 |
 | EVM LDO\_IN | LM2596S 模組 | 5.3 V（J19） | ADS9324 + 板上 LDO |
 | AVDD 5 V / 1.8 V | EVM U5 / U6 | 5.0 / 1.8 V | ADC 類比 |
 | IOVDD | EVM U4（TPS7A2033） | 3.3 V | ADC 數位 I/O |
