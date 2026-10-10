@@ -142,7 +142,7 @@
   <!-- Si Photonic Chip (DUT) -->
   <rect x="1320" y="190" width="300" height="470" rx="11" fill="#FAF6EA" stroke="#C2AE7E" stroke-width="1.8"/>
   <text x="1470" y="222" text-anchor="middle" font-size="18" font-weight="700" fill="#2E2A22">Si 光子晶片</text>
-  <text x="1470" y="244" text-anchor="middle" font-size="13.5" fill="#5B5342">SOI 220 nm・1550 nm</text>
+  <text x="1470" y="244" text-anchor="middle" font-size="13.5" fill="#5B5342">imec SiPh 0.13 µm・1550 nm</text>
   <rect x="1338" y="260" width="264" height="66" rx="6" fill="#FFFDF7" stroke="#C2AE7E" stroke-width="1.2"/>
   <text x="1470" y="285" text-anchor="middle" font-size="14.5" font-weight="600" fill="#2E2A22">多顆可調 MZI</text>
   <text x="1470" y="307" text-anchor="middle" font-size="13" fill="#5B5342">加熱器 θ₁ / θ₂・約 40 V → 2π</text>

@@ -1,6 +1,6 @@
 # PIC-AI-Lab — PIC 智慧實驗平台：從 AI 自動量測、自動校正到光子運算
 
-PIC-AI-Lab 是一套以 **SOI 220 nm 矽光子（PIC）晶片** 為對象的智慧實驗平台，目標分三個階段：
+PIC-AI-Lab 是一套以 **imec SiPhotonics 0.13 µm 製程（IMEC-SiPh）矽光子（PIC）晶片** 為對象的智慧實驗平台，目標分三個階段：
 讓 AI 自動量測晶片、自動校正晶片，最後用晶片上的 **MMI / MZI 網路做運算**。
 待測晶片含 **多顆可調 MZI 分光器** 與 **4 支 MEMS 光探針**；硬體以
 **Arduino GIGA R1 WiFi（STM32H747）** 為控制核心，搭配 **DAC81416-08EVM** 驅動加熱器與探針，
@@ -21,7 +21,7 @@ PIC-AI-Lab 是一套以 **SOI 220 nm 矽光子（PIC）晶片** 為對象的智�
 
 | 指標 | 規格 | 備註 |
 |---|---|---|
-| 待測晶片 | SOI 220 nm，1550 nm C-band | 多顆可調 MZI + 4 支 MEMS 探針 |
+| 待測晶片 | imec SiPhotonics 0.13 µm（IMEC-SiPh），1550 nm C-band | 多顆可調 MZI + 4 支 MEMS 探針 |
 | MCU | Arduino GIGA R1 WiFi（STM32H747XI） | M7 480 MHz + M4 240 MHz，8 MB SDRAM |
 | DAC | DAC81416-08EVM，16 ch，0–40 V | 加熱器直接驅動 + 探針被動分壓 |
 | ADC | ADS9324EVM（改板），16 ch，16-bit SAR | 1 MSPS/ch，片上 oversampling |
@@ -34,7 +34,7 @@ PIC-AI-Lab 是一套以 **SOI 220 nm 矽光子（PIC）晶片** 為對象的智�
 
 ### 系統架構
 
-![PIC-AI-Lab 階段一量測系統架構：Host PC、GIGA R1、DAC81416-08EVM、ADS9324EVM、PD 模組、可調雷射與 Si 光子晶片之間的連線，含光路、驅動電壓、類比量測、數位控制與電源五類訊號](docs/img/system-arch.svg?v=20261010c)
+![PIC-AI-Lab 階段一量測系統架構：Host PC、GIGA R1、DAC81416-08EVM、ADS9324EVM、PD 模組、可調雷射與 Si 光子晶片之間的連線，含光路、驅動電壓、類比量測、數位控制與電源五類訊號](docs/img/system-arch.svg?v=20261010d)
 
 系統骨架：MCU 不直接驅動高壓，所有探針上限由 VCC 與被動分壓比在硬體上決定，韌體改不掉。
 MCU 重置或斷電時 DAC 輸出歸零（nRESET 外部下拉）。完整規格見
