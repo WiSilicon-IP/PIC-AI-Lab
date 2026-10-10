@@ -1,6 +1,6 @@
 # PIC-AI-Lab — PIC 智慧實驗平台：從 AI 自動量測、自動校正到光子運算
 
-PIC-AI-Lab 是一套以 **imec SiPhotonics 0.13 µm 製程（IMEC-SiPh）矽光子（PIC）晶片** 為對象的智慧實驗平台，目標分三個階段：
+PIC-AI-Lab 是一套以 **IMEC SiPhotonics 0.13 µm 製程（IMEC-SiPh）矽光子（PIC）晶片** 為對象的智慧實驗平台，目標分三個階段：
 讓 AI 自動量測晶片、自動校正晶片，最後用晶片上的 **MMI / MZI 網路做運算**。
 待測晶片含 **多顆可調 MZI 分光器** 與 **4 支 MEMS 光探針**；硬體以
 **Arduino GIGA R1 WiFi（STM32H747）** 為控制核心，搭配 **DAC81416-08EVM** 驅動加熱器與探針，
