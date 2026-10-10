@@ -20,40 +20,19 @@ PIC 量測系統是一套針對 **SOI 220 nm 矽光子（PIC）晶片** 設計�
 
 ## 系統架構
 
-詳細系統規格與架構圖見 [`docs/pic-test-system-spec.html`](docs/pic-test-system-spec.html)。
+![PIC 量測系統架構：Host PC、GIGA R1、DAC81416-08EVM、ADS9324EVM、PD 模組、可調雷射與 Si 光子晶片之間的連線，含光路、驅動電壓、類比量測、數位控制與電源五類訊號](docs/img/system-arch.svg)
 
-```
-┌──────────┐    LAN/SCPI    ┌──────────────┐
-│ 可調雷射  │───────────────→│   Si 光子晶片  │←── 光纖輸入
-│（C-band） │                │  SOI 220 nm   │
-└──────────┘                │  多顆 MZI     │
-                            │  4 支 MEMS 探針│
-┌──────────┐    USB CDC     │  加熱器 θ₁/θ₂  │
-│ Host PC  │←──────────────→│              │
-│ Python   │                └──┬───┬───┬───┘
-└──────────┘                   │   │   │
-       │                 heater│probe│  │光柵/光纖出光
-       │              0-40V   │≤7V  │  │
-       │                ┌─────┴─────┘  │
-       │     SPI-A      │              │
-       ├───────────────→│ DAC81416     │
-       │                │ -08EVM       │
-┌──────┴───┐            │ 16 ch DAC    │
-│ GIGA R1  │            └──────┬───────┘
-│ WiFi     │                   │shunt/抽頭
-│ STM32H747│     SPI-B    ┌────┴───────┐    ┌──────────┐
-│ 8MB SDRAM│←────────────→│ ADS9324EVM │←───│ PD 模組  │
-└──────────┘              │ 16 ch ADC  │    │ InGaAs   │
-                          │（改板）     │    └──────────┘
-```
+系統骨架：MCU 不直接驅動高壓，所有探針上限由 VCC 與被動分壓比在硬體上決定，韌體改不掉。
+MCU 重置或斷電時 DAC 輸出歸零（nRESET 外部下拉）。完整規格見
+[`docs/pic-test-system-spec.html`](docs/pic-test-system-spec.html)。
 
 ### 責任分層
 
 | 層級 | 負責 | 不負責 |
 |---|---|---|
 | Host PC | 掃描設定、資料紀錄、擬合、SAX 模型、凍結預測與留出驗證、雷射控制 | 任何需要即時時序的動作 |
-| GIGA R1 韌體 | DAC 寫入、settle 等待、ADC 取樣（CONVST/BAS/DMA）、平均與標準差、暫態波形暫存、MAX\_CODE 與斜率限制、watchdog | 模型與決策 |
-| 硬體（DAC EVM、被動轉接、電源） | POR/nRESET 歸零、探針分壓上限、電源限流、過溫關斷 | 最後一道防線，不依賴軟體 |
+| GIGA R1 韌體 | DAC 寫入、settle 等待、ADC 取樣（CONVST / BAS / DMA）、平均與標準差、暫態波形暫存於 SDRAM、MAX\_CODE 與斜率限制、watchdog、上電自檢 | 模型與決策 |
+| 硬體（DAC EVM、被動轉接、電源） | POR / nRESET 歸零、探針分壓上限、電源限流、過溫關斷 | 最後一道防線，不依賴軟體 |
 
 ### 主要元件
 
@@ -66,12 +45,89 @@ PIC 量測系統是一套針對 **SOI 220 nm 矽光子（PIC）晶片** 設計�
 | 降壓模組 | LM2596S | 36 V → 5.3 V 給 ADS9324EVM | — |
 | 保護二極體 | BAT54A（SOT23） | ADC 輸入保護 | [`datasheets/adc/`](datasheets/adc/) |
 
+### 通道配置
+
+**ADC（16 ch）**
+
+| 通道 | 第一版：單顆 MZI | 完整晶片（4 探針，多顆 MZI） |
+|---|---|---|
+| CH1–CH4 | 探針 ①② PD、主輸出 PD、輸入參考 PD | 探針 ①–④ 光柵 PD |
+| CH5–CH8 | heater ①② shunt、探針 ①② 抽頭電壓 | 主輸出 PD ×N |
+| CH9 | 備用 | 輸入參考 PD |
+| CH10–CH13 | 備用 | 探針 ①–④ 抽頭電壓 |
+| CH14–CH16 | 備用 | heater shunt ×3 |
+
+**DAC（16 ch）**
+
+| 通道 | 用途 | 範圍 |
+|---|---|---|
+| CH0–CH7 | 加熱器（最多 4 顆 MZI × 2 臂） | 0–40 V，直接接晶片，低端 shunt |
+| CH8–CH11 | MEMS 探針 ①–④ | 0–40 V 經分壓 → 0–7 V；MAX\_CODE + 斜率限制 |
+| CH12–CH15 | 備用 | dither / 第二晶片 |
+
+### 相位解析度估算
+
+MZI 輸出 I ≈ (I₀/2)(1 + V cos φ)，正交點 dI/dφ ≈ I₀V/2。條紋擺幅佔半滿刻度時：
+
+| | ADS9324（原生 1 MSPS） | ADS9324 降頻到 4 kSPS | ADS131M08（4 kSPS，v2） |
+|---|---|---|---|
+| SNR / 動態範圍 | 88 dB | 約 98–103 dB | 102 dB |
+| rms 雜訊 | 4×10⁻⁵ | 約 1×10⁻⁵ | 8×10⁻⁶ |
+| 單點相位解析度 | ≈ 80 µrad | ≈ 15–25 µrad | ≈ 16 µrad |
+
+雷射功率漂移與熱漂移通常是 mrad 等級（比上面大兩個數量級），SNR 不是選型的決定因素；通道數與頻寬才是。
+
+## 電源樹
+
+![電源樹：36 V 電源分成限流支路給 DAC VCC，與 LM2596S 降壓支路給 ADS9324EVM；GIGA 由 USB 供電](docs/img/power-tree.svg)
+
+| 軌 | 來源 | 電壓 | 負載 |
+|---|---|---|---|
+| DAC VCC | 實驗室電源 → 限流 | 36 V（可升至 40 V） | 加熱器、探針分壓、DAC 輸出級耗散 |
+| EVM LDO\_IN | LM2596S 模組 | 5.3 V（J19） | ADS9324 + 板上 LDO |
+| AVDD 5 V / 1.8 V | EVM U5 / U6 | 5.0 / 1.8 V | ADC 類比 |
+| IOVDD | EVM U4（TPS7A2033） | 3.3 V | ADC 數位 I/O |
+| GIGA | PC USB-C | 5 V | MCU、SDRAM |
+
+## ADS9324EVM 改板重點
+
+EVM（DC392）為 FMC + FPGA 設計，接 3.3 V MCU 需五項改板：
+
+1. **電源改外接** — JP1 跳到 [2-3] EXT\_PWR；J19 端子台接 5.2–5.5 V。
+2. **IOVDD 改 3.3 V** — U4 貼 TPS7A2033PDBVR、R76 貼 0 Ω、R75 拆掉。
+3. **斷開位準轉換器** — 拆 R86–R91、R93–R95（U11/U12 B 側 0 Ω）。
+4. **補控制腳** — REFSEL 與 RESETn 由 MCU GPIO 驅動。
+5. **接線** — J20/J21 走 1-lane SPI，排線 ≤ 10 cm，SCLK 串 22–33 Ω。
+
+| EVM 腳 | 訊號 | 方向 | GIGA |
+|---|---|---|---|
+| J21-4 | SCLK | ← MCU | D91 |
+| J21-5 | SDI | ← MCU | D90 |
+| J21-3 | SDOUT | → MCU | D89 |
+| J21-6 | CSn | ← MCU | D8 |
+| J20-1 | CONVST | ← MCU | D3（timer） |
+| J20-2 | BAS（DRDY） | → MCU | D2（中斷） |
+| J21-7 | RESETn | ← MCU | D4 |
+| J21-8 | REFSEL | ← MCU | D9 |
+| J19 | 5.3 V | 電源 | LM2596S |
+
+## 驗收順序
+
+1. **EVM 電源驗證** — 改板後只上 J19，不接 MCU：量 TP8（5 V）、TP7（1.8 V）、TP9（3.3 V）。
+2. **SPI 通訊** — 接 MCU，照初始化順序讀 device ID。
+3. **雜訊基底** — 輸入短路（J1–J16 跳帽），量雜訊直方圖，比對 datasheet。
+4. **線性度** — DAC 餵已知電壓進 ADC，量線性度與增益；驗證 SPI-A 與 SPI-B 無衝突。
+5. **安全限制** — 假負載取代晶片：MAX\_CODE、斜率限制、nRESET 歸零、watchdog 逾時歸零。
+6. **E0 量測** — 接 TIA 與 PD，雷射開，跑單顆加熱器 I-V 與 P₂π。
+7. **探針特性** — 慢速升壓找解耦電壓與 pull-in 餘裕，定案分壓比。
+8. **暫態擷取** — heater 步階、探針步階，SDRAM 緩衝與 USB 倒出不掉資料。
+
 ## 目錄結構
 
 | 路徑 | 內容 |
 |---|---|
-| `docs/` | 系統規格（HTML）、簡報、架構決策紀錄 |
-| `docs/img/` | 系統圖片（PD 模組、OLS 等） |
+| `docs/` | 系統規格（HTML）、簡報、heater driver proposal |
+| `docs/img/` | 架構圖（SVG）、元件圖片 |
 | `docs/adr/` | 架構決策紀錄（ADR） |
 | `datasheets/` | 元件 datasheet，依類別分資料夾：`adc/`、`dac/`、`pd/`、`mcu/` |
 | `firmware/` | Arduino GIGA R1 韌體（待開發） |
@@ -80,24 +136,15 @@ PIC 量測系統是一套針對 **SOI 220 nm 矽光子（PIC）晶片** 設計�
 | `hw/` | 硬體設計檔案 |
 | `hw/passive-board/` | 被動轉接板（探針分壓、shunt） |
 
-## 驗收順序
-
-1. EVM 改板後只上 J19 與 TP9，不接 MCU：量三軌電壓。
-2. 接 MCU，讀 device ID。
-3. 輸入短路，量雜訊直方圖，比對 datasheet。
-4. DAC 餵已知電壓進 ADC，量線性度與增益。
-5. 假負載取代晶片：驗證安全限制（MAX\_CODE、斜率限制、nRESET 歸零、watchdog）。
-6. 接 TIA 與 PD，雷射開，跑單顆加熱器 I-V 與 P₂π（E0）。
-7. 探針慢速升壓找解耦電壓與 pull-in 餘裕。
-8. 暫態擷取：heater 步階、探針步階，SDRAM 緩衝與 USB 倒出。
-
 ## 待確認事項
 
-- ADS9324 datasheet：power sequencing、1-lane 模式資料輸出腳位、oversampling 設定。
-- GIGA R1 pinout：D3 timer 輸出、D2 中斷、D89–D91 SPI1、開機期間腳位狀態。
-- ADS9324EVM 改板後實測三軌電壓與 IOVDD 電流。
-- 原團隊 netlist：MZI 數量與連接、探針位置、輸出埠數。
+- ADS9324 datasheet：power sequencing、1-lane 模式資料輸出腳位（SDOUT 或 D0）、oversampling 設定與 24-bit 輸出格式。
+- GIGA R1 官方 pinout：D3 timer 輸出、D2 中斷、D89–D91 SPI1、開機與燒錄期間各腳位狀態。
+- ADS9324EVM 改板後實測三軌電壓與 IOVDD 電流；LM2596S 模組實品的輸入電容耐壓與 IC 來源。
+- 原團隊 netlist：MZI 數量與連接、探針位置、輸出埠數（決定 PD 數與 ADC 通道）。
+- 探針取光比對電壓的曲線是否單調、是否有遲滯。
 - 加熱器電阻 R\_h（決定 shunt、電流與 DAC 耗散）。
+- BP-ADS9324 供貨恢復時是否改回 BoosterPack（省掉改板）。
 
 ## 版本歷程
 
