@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PIC 量測系統規格 v3 — MEMS 探針 + 多級 MZI 晶片</title>
+<title>PIC-AI-Lab 階段一：量測系統規格 v3 — MEMS 探針 + 多級 MZI 晶片</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -46,6 +46,7 @@
   .wrap{overflow-x:auto}
   figure{margin:16px 0 22px;background:var(--panel);border:1px solid var(--rule);padding:14px}
   figure svg{width:100%;height:auto;display:block}
+  figure img{display:block;width:100%;height:auto}
   figcaption{font-size:13.5px;color:var(--ink-2);margin-top:10px;line-height:1.6}
   .legend{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;margin-top:8px}
   .legend span::before{content:"";display:inline-block;width:26px;height:0;border-top:3px solid;margin-right:6px;vertical-align:middle}
@@ -68,17 +69,18 @@
 <main>
 
 <header class="title">
-  <h1>PIC 量測系統規格 v3<br>MEMS 探針 + 多級 MZI 晶片的 DC 掃描與暫態擷取平台</h1>
-  <p class="sub">GIGA R1 WiFi 控制、DAC81416-08EVM 驅動、ADS9324EVM 讀取。本文件只記錄測試系統規格與修改重點；論文規劃見《可切換 MEMS 探針的資訊價值》v2。</p>
+  <h1>PIC-AI-Lab 階段一：量測系統規格 v3<br>MEMS 探針 + 多級 MZI 晶片的 DC 掃描與暫態擷取平台</h1>
+  <p class="sub">PIC-AI-Lab 以 AI 自動量測 → 自動校正 → 光子運算三階段為目標；本文件記錄階段一量測系統（GIGA R1 WiFi 控制、DAC81416-08EVM 驅動、ADS9324EVM 讀取）的規格與修改重點，階段二、三的開發規則見 <code>AGENT.md</code>；論文規劃見《可切換 MEMS 探針的資訊價值》v2。</p>
   <div class="meta">
     <span>版本 <b>v3</b></span>
-    <span>日期 <b>2026-10-08</b></span>
+    <span>日期 <b>2026-10-10</b></span>
     <span>取代 <b>v2 系統章節（ESP32-S3 + ADS131M08）</b></span>
     <span>狀態 <b>規劃值，零件待購、datasheet 待核</b></span>
   </div>
 </header>
 
 <nav class="toc" aria-label="目錄">
+  <a href="#roadmap">三階段路線圖</a>
   <a href="#changes">v3 修改重點</a>
   <a href="#pic">PIC 需求</a>
   <a href="#arch">系統架構</a>
@@ -94,6 +96,22 @@
 </nav>
 
 <!-- ============================================================ -->
+<section id="roadmap">
+<h2>PIC-AI-Lab 三階段路線圖</h2>
+<p>三個階段共用同一套硬體與韌體骨架，差別只在 Host PC 端的決策層。後一階段不得放寬前一階段的任何安全規則；階段二、三的 AI 只下達目標，所有電壓碼值仍由 GIGA 韌體檢查後才寫入 DAC。</p>
+<div class="wrap">
+<table>
+<thead><tr><th>階段</th><th>目標</th><th>關鍵能力</th><th>狀態</th></tr></thead>
+<tbody>
+<tr><td><b>1. AI 自動量測</b></td><td>無人值守完成 DC 相位掃描與暫態擷取</td><td>掃描序列自動規劃、安全限制（MAX_CODE、斜率、watchdog）、資料自動紀錄與擬合</td><td><b>進行中</b>（本文件）</td></tr>
+<tr><td><b>2. AI 自動校正</b></td><td>自動找到每顆 MZI 的 P₂π、R_h 與探針工作點，並追蹤漂移</td><td>閉迴路控制（量測 → 模型 → 下一步電壓）、SAX 模型與留出驗證、溫度與雷射漂移補償、校正表版本化</td><td>規劃中</td></tr>
+<tr><td><b>3. AI 光子運算</b></td><td>以校正好的 MMI / MZI 網路執行矩陣運算</td><td>權重 → 相位 → 電壓映射、批次同步更新、運算結果回讀與誤差分析、線上微調</td><td>規劃中</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<!-- ============================================================ -->
 <section id="changes">
 <h2>v3 相對 v2 的修改重點</h2>
 <p>三個決定改了系統的骨架，其餘沿用 v2：DAC 與保護設計不變，Host PC 分工不變，量測協定不變。</p>
@@ -106,7 +124,7 @@
 <tr><td>MCU</td><td>ESP32-S3-DevKitC-1</td><td><b>Arduino GIGA R1 WiFi</b>（STM32H747XI）</td><td>8 MB SDRAM 可暫存 1 MSPS 的完整暫態波形；SPI 可到 50 MHz；雙核分工（M4 跑 DAC 掃描、M7 收 ADC）。穩態掃描兩者皆可，差異在暫態擷取。</td></tr>
 <tr><td>MCU 到 PC</td><td>USB CDC</td><td>USB CDC（不變）</td><td>GIGA 的 USB-C 同為 full-speed，約 1 MB/s；高速資料先存 SDRAM 再倒出，不做即時串流。</td></tr>
 <tr><td>DAC</td><td>DAC81416-08EVM</td><td>不變</td><td>16 通道足以覆蓋 4 顆 MZI 的加熱器與 4 支探針。</td></tr>
-<tr><td>電源</td><td>DAC VCC 41 V 實驗室電源；ADC EVM 拆 PHI 外供電</td><td>VCC 先設 <b>36 V</b>；LM2596S 模組降到 5.3 V 給 ADS9324EVM J19；IOVDD 由板上 U4（TPS7A2033）產生；GIGA 走 USB</td><td>40 V 只是由「原論文約 40 V 得 2π」反推的上限，兩臂分攤每臂只需 π（約 28 V）；36 V 讓 LM2596 留在 40 V 輸入規格內，E0 量得 R_h 後再決定是否升壓。</td></tr>
+<tr><td>電源</td><td>DAC VCC 41 V 實驗室電源；ADC EVM 拆 PHI 外供電</td><td>實驗室電源最大 60 V，VCC 預設 <b>40 V</b>；LM2596S 模組降到 5.3 V 給 ADS9324EVM J19；IOVDD 由板上 U4（TPS7A2033）產生；GIGA 走 USB</td><td>40 V 由「原論文約 40 V 得 2π」反推，兩臂分攤每臂只需 π（約 28 V）；E0 量得 R_h 後再調整實際電壓。LM2596S-ADJ 輸入上限 40 V，電源若高於 40 V 需改用 LM2596HV 等級模組。</td></tr>
 <tr><td>探針模型</td><td>開關（耦合／解耦）</td><td><b>連續可調取光比</b></td><td>原團隊晶片上的探針由控制電壓連續設定距離，是弱可變 tap，不是 on-off 開關；韌體的 <code>set_probe</code> 要接受連續碼值，而非兩態。</td></tr>
 </tbody>
 </table>
@@ -173,146 +191,8 @@
 <section id="arch">
 <h2>系統架構</h2>
 <figure>
-<svg viewBox="0 0 980 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="系統架構圖：Host PC、GIGA R1、DAC81416-08EVM、ADS9324EVM、PD 模組、雷射與 PIC 之間的連線">
-  <defs>
-    <marker id="ao" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#C8841A"/></marker>
-    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#B0403A"/></marker>
-    <marker id="aa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#2A8C7A"/></marker>
-    <marker id="ad" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#2F5F8A"/></marker>
-    <marker id="ap" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#6B6B6B"/></marker>
-  </defs>
-  <style>
-    .box{fill:#fff;stroke:#1F2A33;stroke-width:1.4}
-    .chip{fill:#FBF3E3;stroke:#C8841A;stroke-width:1.6}
-    .t{font-family:"IBM Plex Sans","Noto Sans TC",sans-serif;font-size:13px;fill:#1F2A33}
-    .h{font-weight:600;font-size:14px}
-    .s{font-size:11.5px;fill:#55636E}
-    .lbl{font-size:11px;fill:#1F2A33}
-    .o{stroke:#C8841A;stroke-width:2.4;fill:none}
-    .hv{stroke:#B0403A;stroke-width:2.4;fill:none}
-    .a{stroke:#2A8C7A;stroke-width:2.4;fill:none}
-    .d{stroke:#2F5F8A;stroke-width:2.4;fill:none}
-    .pw{stroke:#6B6B6B;stroke-width:1.8;fill:none;stroke-dasharray:6 4}
-  </style>
-
-  <!-- ===== 第一列：雷射 / DAC / 被動轉接 / PIC ===== -->
-  <rect class="box" x="20" y="40" width="200" height="60" rx="4"/>
-  <text class="t h" x="32" y="62">可調雷射（C-band）</text>
-  <text class="t s" x="32" y="82">波長、功率：SCPI over LAN</text>
-
-  <rect class="box" x="300" y="40" width="250" height="116" rx="4"/>
-  <text class="t h" x="312" y="62">DAC81416-08EVM</text>
-  <text class="t s" x="312" y="82">VCC 36 V（限流；E0 後可升至 40 V）</text>
-  <text class="t s" x="312" y="98">heater 通道 0–40 V → 直接接晶片</text>
-  <text class="t s" x="312" y="114">probe 通道 0–40 V → 被動分壓 0–7 V</text>
-  <text class="t s" x="312" y="130">J18 開路、外部 SPI；nRESET 下拉 → 歸零</text>
-  <text class="t s" x="312" y="146">POR 歸零、過溫關斷</text>
-
-  <rect class="box" x="630" y="136" width="150" height="90" rx="4"/>
-  <text class="t h" x="642" y="158">被動轉接</text>
-  <text class="t s" x="642" y="176">probe 分壓，上限 VCC × k</text>
-  <text class="t s" x="642" y="192">R_bot 抽頭 → ADC</text>
-  <text class="t s" x="642" y="208">heater 回流 shunt → ADC</text>
-  <text class="t s" x="642" y="222">無主動元件、無 MUX</text>
-
-  <rect class="chip" x="840" y="40" width="120" height="272" rx="6"/>
-  <text class="t h" x="852" y="62">Si 光子晶片</text>
-  <text class="t s" x="852" y="82">SOI 220 nm</text>
-  <text class="t s" x="852" y="98">1550 nm</text>
-  <text class="t s" x="852" y="120">多顆可調 MZI</text>
-  <text class="t s" x="852" y="136">加熱器 θ₁／θ₂</text>
-  <text class="t s" x="852" y="158">4 支 MEMS 探針</text>
-  <text class="t s" x="852" y="174">（可變 tap）</text>
-  <text class="t s" x="852" y="196">探針光柵</text>
-  <text class="t s" x="852" y="212">向上出光</text>
-  <text class="t s" x="852" y="234">主輸出光纖埠</text>
-  <text class="t s" x="852" y="256">heater 回流端</text>
-  <text class="t s" x="852" y="272">串 shunt</text>
-  <text class="t s" x="852" y="294">拓樸待確認</text>
-
-  <!-- ===== 第二列：Host PC / GIGA ===== -->
-  <rect class="box" x="20" y="196" width="200" height="88" rx="4"/>
-  <text class="t h" x="32" y="218">Host PC</text>
-  <text class="t s" x="32" y="238">Python：掃描腳本、資料紀錄</text>
-  <text class="t s" x="32" y="254">擬合、SAX 模型、留出驗證</text>
-  <text class="t s" x="32" y="270">不在即時迴路內</text>
-
-  <rect class="box" x="300" y="196" width="250" height="116" rx="4"/>
-  <text class="t h" x="312" y="218">Arduino GIGA R1 WiFi</text>
-  <text class="t s" x="312" y="238">STM32H747：M7 480 MHz + M4 240 MHz</text>
-  <text class="t s" x="312" y="254">8 MB SDRAM 暫存暫態波形</text>
-  <text class="t s" x="312" y="270">SPI-A → DAC81416　SPI-B → ADS9324</text>
-  <text class="t s" x="312" y="286">CONVST 由 timer 產生；BAS 中斷</text>
-  <text class="t s" x="312" y="302">MAX_CODE、斜率限制、watchdog</text>
-
-  <!-- ===== 第三列：電源 / ADC / PD ===== -->
-  <rect class="box" x="20" y="352" width="200" height="82" rx="4"/>
-  <text class="t h" x="32" y="374">電源</text>
-  <text class="t s" x="32" y="394">36 V 電源 ─ 限流 → DAC VCC</text>
-  <text class="t s" x="32" y="410">36 V ─ LM2596S → 5.3 V → J19</text>
-  <text class="t s" x="32" y="426">GIGA：PC USB-C 供電</text>
-
-  <rect class="box" x="300" y="352" width="250" height="118" rx="4"/>
-  <text class="t h" x="312" y="374">ADS9324EVM（改板）</text>
-  <text class="t s" x="312" y="394">16 ch 同步取樣，16-bit SAR，1 MSPS/ch</text>
-  <text class="t s" x="312" y="410">±2.5 V 檔、1 MΩ、內建 4.096 V 參考</text>
-  <text class="t s" x="312" y="426">1-lane SPI 走 J20/J21；IOVDD 改 3.3 V</text>
-  <text class="t s" x="312" y="442">J19 ← 5.3 V；板上 LDO 出 5 / 1.8 / 3.3 V</text>
-  <text class="t s" x="312" y="458">片上 oversampling；25／325 kHz 頻寬</text>
-
-  <rect class="box" x="630" y="352" width="150" height="118" rx="4"/>
-  <text class="t h" x="642" y="374">PD 模組</text>
-  <text class="t s" x="642" y="394">InGaAs，帶放大</text>
-  <text class="t s" x="642" y="410">一柵一 PD</text>
-  <text class="t s" x="642" y="426">探針光柵 ×4</text>
-  <text class="t s" x="642" y="442">主輸出 ×N</text>
-  <text class="t s" x="642" y="458">輸入參考 ×1</text>
-
-  <!-- ===== 數位控制 ===== -->
-  <path class="d" d="M220 240 H300" marker-end="url(#ad)"/>
-  <text class="lbl" x="230" y="232">USB CDC</text>
-
-  <path class="d" d="M120 196 V100" marker-end="url(#ad)"/>
-  <text class="lbl" x="128" y="152">LAN／SCPI</text>
-
-  <path class="d" d="M380 196 V156" marker-end="url(#ad)"/>
-  <text class="lbl" x="388" y="170">SPI-A、nLDAC、nRESET、nALMOUT</text>
-
-  <path class="d" d="M420 312 V352" marker-end="url(#ad)"/>
-  <text class="lbl" x="412" y="336" text-anchor="end">SPI-B、CONVST、BAS、RESETn、REFSEL</text>
-
-  <!-- ===== 電源 ===== -->
-  <path class="pw" d="M220 400 H300" marker-end="url(#ap)"/>
-  <text class="lbl" x="236" y="392">5.3 V</text>
-
-  <!-- ===== 驅動電壓 ===== -->
-  <path class="hv" d="M550 70 H840" marker-end="url(#ah)"/>
-  <text class="lbl" x="610" y="64">heater 0–40 V，直接接晶片</text>
-
-  <path class="hv" d="M550 112 H705 V136" marker-end="url(#ah)"/>
-  <text class="lbl" x="560" y="105">probe 0–40 V</text>
-  <path class="hv" d="M780 180 H840" marker-end="url(#ah)"/>
-  <text class="lbl" x="790" y="172">probe</text>
-  <text class="lbl" x="788" y="196">≤ 7 V</text>
-
-  <!-- ===== 類比量測 ===== -->
-  <path class="a" d="M660 226 V330 H520 V352" marker-end="url(#aa)"/>
-  <text class="lbl" x="560" y="324">shunt、探針抽頭</text>
-
-  <path class="a" d="M630 400 H550" marker-end="url(#aa)"/>
-  <text class="lbl" x="566" y="392">PD 電壓</text>
-
-  <!-- ===== 光路 ===== -->
-  <path class="o" d="M120 40 V16 H900 V40" marker-end="url(#ao)"/>
-  <text class="lbl" x="300" y="12">光纖輸入（晶片外分光：輸入參考 → PD）</text>
-
-  <path class="o" d="M900 312 V420 H780" marker-end="url(#ao)"/>
-  <text class="lbl" x="790" y="440">光柵／光纖出光</text>
-</svg>
-<div class="legend">
-  <span class="lo">光路</span><span class="lh">驅動電壓</span><span class="la">類比量測</span><span class="ld">數位控制</span><span class="lp">電源</span>
-</div>
-<figcaption>電源樹見<a href="#power">電源規劃</a>。與 v2 同一骨架：沒有獨立安全板，探針上限由 VCC 與分壓比在硬體上決定，韌體改不掉；MCU 重置或斷電時 DAC 輸出歸零。改變的是中間兩塊：MCU 換成 GIGA R1，ADC 換成改板後的 ADS9324EVM。</figcaption>
+<img src="img/system-arch.svg" alt="PIC-AI-Lab 階段一量測系統架構：Host PC、GIGA R1、DAC81416-08EVM、被動轉接板、ADS9324EVM、PD 模組、可調雷射與 Si 光子晶片之間的連線">
+<figcaption>圖檔與 README 共用（<code>docs/img/system-arch.svg</code>）。電源樹見<a href="#power">電源規劃</a>。與 v2 同一骨架：沒有獨立安全板，探針上限由 VCC 與分壓比在硬體上決定，韌體改不掉；MCU 重置或斷電時 DAC 輸出歸零。改變的是中間兩塊：MCU 換成 GIGA R1，ADC 換成改板後的 ADS9324EVM；可調雷射改由 GIGA UART 以 SCPI 控制；被動轉接板預留 GIGA GPIO（MOS 開關）、分壓回授到 GIGA 內建 ADC，以及 VCC 參考輸入。</figcaption>
 </figure>
 </section>
 
@@ -323,8 +203,8 @@
 <table>
 <thead><tr><th>層級</th><th>負責</th><th>不負責</th></tr></thead>
 <tbody>
-<tr><td>Host PC</td><td>掃描設定、資料紀錄、擬合、SAX 模型、凍結預測與留出驗證、雷射控制</td><td>任何需要即時時序的動作</td></tr>
-<tr><td>GIGA R1 韌體</td><td>掃描序列、DAC 寫入、settle 等待、ADC 取樣（CONVST 時序、BAS 中斷、DMA）、平均與標準差、暫態波形暫存於 SDRAM、MAX_CODE 與斜率限制、watchdog、上電自檢</td><td>模型與決策</td></tr>
+<tr><td>Host PC</td><td>掃描設定、資料紀錄、擬合、SAX 模型、凍結預測與留出驗證；階段二校正迴路與階段三運算排程的決策層</td><td>任何需要即時時序的動作（含雷射控制）</td></tr>
+<tr><td>GIGA R1 韌體</td><td>掃描序列、DAC 寫入、settle 等待、ADC 取樣（CONVST 時序、BAS 中斷、DMA）、平均與標準差、暫態波形暫存於 SDRAM、MAX_CODE 與斜率限制、watchdog、上電自檢、雷射控制（UART SCPI）、被動板 GPIO（預留 MOS 開關）與分壓回授（內建 ADC）</td><td>模型與決策</td></tr>
 <tr><td>DAC81416-08EVM、被動轉接、電源</td><td>POR 與 nRESET 下拉使輸出歸零；probe 分壓給出硬體上限；電源限流限制加熱器總功率；DAC 過溫關斷</td><td>—（最後一道防線，不依賴軟體）</td></tr>
 </tbody>
 </table>
@@ -442,7 +322,7 @@
 <tr><td class="sig">J20-3</td><td class="sig">D0</td><td>→ MCU</td><td>D14（備用）</td></tr>
 <tr><td class="sig">TP9</td><td class="sig">IOVDD</td><td>電源（備案）</td><td>3V3，僅 U4 不焊時</td></tr>
 <tr><td class="sig">J17 / J18</td><td class="sig">GND</td><td></td><td>GND</td></tr>
-<tr><td class="sig">J19</td><td class="sig">5.3 V</td><td>電源</td><td>LM2596S 模組（自 36 V 降壓）</td></tr>
+<tr><td class="sig">J19</td><td class="sig">5.3 V</td><td>電源</td><td>LM2596S 模組（自 40 V 降壓）</td></tr>
 </tbody>
 </table>
 </div>
@@ -503,7 +383,7 @@
 <section id="dac">
 <h2>DAC81416-08EVM 與安全設計（沿用 v2）</h2>
 <ul>
-  <li>VCC 先設 36 V（DAC 輸出上限約 35 V，單臂約 1.5π、兩臂分攤每臂 π 綽綽有餘），由實驗室電源供給並限流，限制加熱器總功率。E0 量得 R_h 與 V₂π 後若需要，再升到 38–40 V；屆時分壓比、MAX_CODE 與 LM2596 模組等級一併重算。</li>
+  <li>VCC 預設 40 V（電源最大 60 V），由實驗室電源供給並限流，限制加熱器總功率。E0 量得 R_h 與 V₂π 後調整實際電壓；電壓一變，分壓比、MAX_CODE 與 LM2596 模組等級一併重算。</li>
   <li>加熱器通道 0–40 V 直接輸出；相位 ∝ 功率 ∝ V²，低電壓區每碼值相位極小，擬合自變數用實測功率。</li>
   <li>探針通道設 0–40 V 範圍，經每通道兩顆電阻被動分壓到 0–7 V；DAC 輸出不可能超過 VCC，所以探針上限只由 VCC 與電阻比決定。分壓比與 MAX_CODE 在量到解耦電壓與 pull-in 餘裕之後才定案。</li>
   <li>J18 開路、外部 SPI；nRESET 外部下拉，MCU 重置、燒錄或斷電時輸出歸零；POR 歸零；過溫關斷。</li>
@@ -516,63 +396,7 @@
 <section id="power">
 <h2>電源規劃</h2>
 <figure>
-<svg viewBox="0 0 980 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="電源樹：36 V 電源分成限流支路給 DAC VCC，與 LM2596S 降壓支路給 ADS9324EVM；GIGA 由 USB 供電">
-  <defs><marker id="pp" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#6B6B6B"/></marker></defs>
-  <style>
-    .pb{fill:#fff;stroke:#1F2A33;stroke-width:1.4}
-    .pt{font-family:"IBM Plex Sans","Noto Sans TC",sans-serif;font-size:13px;fill:#1F2A33}
-    .ph{font-weight:600;font-size:14px}
-    .ps{font-size:11.5px;fill:#55636E}
-    .pl{font-size:11px;fill:#1F2A33}
-    .pw{stroke:#6B6B6B;stroke-width:2;fill:none}
-    .hvb{fill:#FBEBEA;stroke:#B0403A}
-  </style>
-  <rect class="pb" x="20" y="100" width="170" height="80" rx="4"/>
-  <text class="pt ph" x="32" y="122">實驗室電源 36 V</text>
-  <text class="pt ps" x="32" y="142">E0 後視需要升至 38–40 V</text>
-  <text class="pt ps" x="32" y="158">單一來源，所有軌同時上下電</text>
-
-  <rect class="pb hvb" x="290" y="30" width="130" height="50" rx="4"/>
-  <text class="pt ph" x="302" y="52">限流</text>
-  <text class="pt ps" x="302" y="70">只在 DAC 支路</text>
-  <rect class="pb" x="500" y="30" width="200" height="50" rx="4"/>
-  <text class="pt ph" x="512" y="52">DAC81416-08EVM VCC</text>
-  <text class="pt ps" x="512" y="70">加熱器與探針的唯一高壓源</text>
-
-  <rect class="pb" x="290" y="140" width="130" height="80" rx="4"/>
-  <text class="pt ph" x="302" y="162">LM2596S 模組</text>
-  <text class="pt ps" x="302" y="180">36 V → 5.3 V</text>
-  <text class="pt ps" x="302" y="196">輸入耐壓 ≥ 50 V 電容</text>
-  <text class="pt ps" x="302" y="212">輸出 +100 µF，電位器固定</text>
-  <rect class="pb" x="500" y="140" width="200" height="80" rx="4"/>
-  <text class="pt ph" x="512" y="162">ADS9324EVM J19</text>
-  <text class="pt ps" x="512" y="180">JP1 [2-3]；LM66100、6 V TVS</text>
-  <text class="pt ps" x="512" y="196">約 100 mA</text>
-  <text class="pt ps" x="512" y="212">板上 LDO 分出三軌 →</text>
-  <rect class="pb" x="780" y="120" width="180" height="120" rx="4"/>
-  <text class="pt ph" x="792" y="142">EVM 板上 LDO</text>
-  <text class="pt ps" x="792" y="162">U5 TPS7A2050 → AVDD 5 V</text>
-  <text class="pt ps" x="792" y="178">U6 TPS7A2018 → AVDD 1.8 V</text>
-  <text class="pt ps" x="792" y="194">U4 TPS7A2033 → IOVDD 3.3 V</text>
-  <text class="pt ps" x="792" y="210">U9 TPS7A2018 → 1V8_FMC</text>
-  <text class="pt ps" x="792" y="226">U4 需自行貼件；三軌同源上電</text>
-
-  <rect class="pb" x="290" y="250" width="130" height="40" rx="4"/>
-  <text class="pt ph" x="302" y="275">PC USB-C</text>
-  <rect class="pb" x="500" y="250" width="200" height="40" rx="4"/>
-  <text class="pt ph" x="512" y="275">GIGA R1 WiFi</text>
-  <text class="pt ps" x="640" y="275">約 0.5 A</text>
-
-  <path class="pw" d="M190 140 H240 V55 H290" marker-end="url(#pp)"/>
-  <path class="pw" d="M420 55 H500" marker-end="url(#pp)"/>
-  <path class="pw" d="M240 140 V180 H290" marker-end="url(#pp)"/>
-  <path class="pw" d="M420 180 H500" marker-end="url(#pp)"/>
-  <text class="pl" x="440" y="172">5.3 V</text>
-  <path class="pw" d="M700 180 H780" marker-end="url(#pp)"/>
-  <path class="pw" d="M420 270 H500" marker-end="url(#pp)"/>
-  <text class="pl" x="440" y="262">5 V</text>
-  <text class="pl" x="196" y="132">36 V</text>
-</svg>
+<img src="img/power-tree.svg" alt="電源樹：實驗室電源最大 60 V、預設 40 V，分成限流支路給 DAC VCC，與 LM2596S 降壓支路給 ADS9324EVM；GIGA 由 USB 供電">
 <figcaption>限流只放在 DAC VCC 支路，LM2596S 從限流之前取電：限流動作時只有加熱器掉電，MCU 與 ADC 不會跟著重置而丟資料。GIGA 本來就要接 PC 做 USB CDC，順便由 USB 供電。</figcaption>
 </figure>
 
@@ -581,19 +405,19 @@
 <table>
 <thead><tr><th>軌</th><th>來源</th><th>電壓</th><th>電流</th><th>負載</th><th>備註</th></tr></thead>
 <tbody>
-<tr><td>DAC VCC</td><td>實驗室電源 → 限流</td><td>36 V（可升至 40 V）</td><td>依 R_h，E0 後定</td><td>加熱器、探針分壓、DAC 輸出級耗散</td><td>限流值 = 加熱器總功率上限；DAC 耗散在 VCC/2 附近最大</td></tr>
+<tr><td>DAC VCC</td><td>實驗室電源 → 限流</td><td>預設 40 V（電源最大 60 V）</td><td>依 R_h，E0 後定</td><td>加熱器、探針分壓、DAC 輸出級耗散</td><td>限流值 = 加熱器總功率上限；DAC 耗散在 VCC/2 附近最大</td></tr>
 <tr><td>EVM LDO_IN</td><td>LM2596S 模組</td><td>5.3 V（J19 容許 5.2–5.5 V）</td><td>約 100 mA</td><td>ADS9324 + 板上 LDO</td><td>150 kHz 漣波 30–50 mVpp，經 TPS7A2050 PSRR 後剩幾十 µV</td></tr>
 <tr><td>AVDD 5 V / 1.8 V</td><td>EVM U5 / U6</td><td>5.0 / 1.8 V</td><td>約 40 mA / 少量</td><td>ADC 類比</td><td>不動</td></tr>
 <tr><td>IOVDD</td><td>EVM U4（貼 TPS7A2033）</td><td>3.3 V</td><td>十幾 mA</td><td>ADC 數位 I/O、U10–U12 VCCB</td><td>備案：拆 R75，TP9 ← GIGA 3V3</td></tr>
-<tr><td>GIGA</td><td>PC USB-C</td><td>5 V</td><td>約 0.5 A</td><td>MCU、SDRAM、Wi-Fi 模組</td><td>不從 36 V 取電；VIN 排針需 ≥ 6 V，不用</td></tr>
+<tr><td>GIGA</td><td>PC USB-C</td><td>5 V</td><td>約 0.5 A</td><td>MCU、SDRAM、Wi-Fi 模組</td><td>不從高壓取電；VIN 排針需 ≥ 6 V，不用</td></tr>
 </tbody>
 </table>
 </div>
 
 <h3>LM2596S 模組使用規範</h3>
 <ul>
-  <li>LM2596 輸入上限 40 V（絕對最大 45 V）。VCC 36 V 時餘裕 4 V；若日後升到 40 V，換 60 V 輸入等級的模組（LM2596HV 相容品、XL7005A、MP4560、LM5164）並實測起動。</li>
-  <li>確認模組輸入電解電容耐壓 ≥ 50 V；確認板上 IC 不是只有 35 V 輸入的替代品。</li>
+  <li>LM2596S-ADJ 輸入上限 40 V（絕對最大 45 V），VCC 40 V 時已無餘裕；電源高於 40 V 一律改用 60 V 輸入等級的模組（LM2596HV 相容品、XL7005A、MP4560、LM5164）並實測起動。</li>
+  <li>確認模組輸入電解電容耐壓 ≥ 80 V；確認板上 IC 不是只有 35 V 輸入的替代品。</li>
   <li>輸入端加 TVS（SMAJ43A）與 100 µF；輸出並 100 µF，必要時再加 10 µH + 47 µF 的 LC。</li>
   <li>電位器先在空載調到 5.3 V，接上 EVM 後再量一次，確認後固定電位器。調整期間不要接 EVM：LDO_IN 的 6 V TVS 是鉗位不是保護，調過頭會發燙。</li>
   <li>模組 GND 只在 J19 端與 EVM 接一點，不另外與其他板互連，避免開關回流電流繞進類比地。</li>
@@ -602,10 +426,10 @@
 
 <h3>上電順序</h3>
 <ol>
-  <li>36 V 電源開：限流支路與 LM2596S 同時得電，EVM 三軌由板上 LDO 依序建立；DAC nRESET 被下拉，輸出為 0 V。</li>
+  <li>高壓電源開（預設 40 V）：限流支路與 LM2596S 同時得電，EVM 三軌由板上 LDO 依序建立；DAC nRESET 被下拉，輸出為 0 V。</li>
   <li>GIGA 接 USB 或重置：所有 ADC／DAC 相關 GPIO 預設 Hi-Z。</li>
   <li>韌體確認 EVM 已上電（固定延遲或讀 device ID 前的 GPIO 檢查），再依初始化順序設定 GPIO 並放開 RESETn。</li>
-  <li>關機反向：先停掃描、DAC 歸零，再斷 36 V；GIGA 最後。</li>
+  <li>關機反向：先停掃描、DAC 歸零，再斷高壓電源；GIGA 最後。</li>
 </ol>
 </section>
 
