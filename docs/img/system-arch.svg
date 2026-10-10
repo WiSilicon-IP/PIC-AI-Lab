@@ -1,177 +1,177 @@
-<svg viewBox="0 0 1360 920" xmlns="http://www.w3.org/2000/svg"
+<svg viewBox="0 0 1670 1110" xmlns="http://www.w3.org/2000/svg"
      font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',Arial,sans-serif">
   <defs>
-    <marker id="ao" viewBox="0 0 9 9" refX="8" refY="4.5" markerWidth="10" markerHeight="10" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#B8860B"/></marker>
-    <marker id="ah" viewBox="0 0 9 9" refX="8" refY="4.5" markerWidth="10" markerHeight="10" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#B5533C"/></marker>
-    <marker id="aa" viewBox="0 0 9 9" refX="8" refY="4.5" markerWidth="10" markerHeight="10" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#1F8A7D"/></marker>
-    <marker id="ad" viewBox="0 0 9 9" refX="8" refY="4.5" markerWidth="10" markerHeight="10" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#3A5BA8"/></marker>
-    <marker id="ap" viewBox="0 0 9 9" refX="8" refY="4.5" markerWidth="10" markerHeight="10" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#8B8168"/></marker>
+    <marker id="ao" viewBox="0 0 9 9" refX="8" refY="4.5" markerWidth="11" markerHeight="11" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#B8860B"/></marker>
+    <marker id="ah" viewBox="0 0 9 9" refX="8" refY="4.5" markerWidth="11" markerHeight="11" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#B5533C"/></marker>
+    <marker id="aa" viewBox="0 0 9 9" refX="8" refY="4.5" markerWidth="11" markerHeight="11" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#1F8A7D"/></marker>
+    <marker id="ad" viewBox="0 0 9 9" refX="8" refY="4.5" markerWidth="11" markerHeight="11" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#3A5BA8"/></marker>
+    <marker id="ap" viewBox="0 0 9 9" refX="8" refY="4.5" markerWidth="11" markerHeight="11" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#8B8168"/></marker>
   </defs>
 
-  <rect width="1360" height="920" fill="#FFFDF7" rx="4"/>
+  <rect width="1670" height="1110" fill="#FFFDF7" rx="4"/>
 
   <!-- Title -->
-  <text x="560" y="36" text-anchor="middle" font-size="19" font-weight="700" fill="#2E2A22">PIC 量測系統架構</text>
-  <text x="560" y="56" text-anchor="middle" font-size="12" fill="#8B8168">GIGA R1 WiFi 控制、DAC81416-08EVM 驅動、ADS9324EVM 讀取、MEMS 探針 + 多級 MZI 晶片</text>
+  <text x="835" y="44" text-anchor="middle" font-size="23" font-weight="700" fill="#2E2A22">PIC 量測系統架構</text>
+  <text x="835" y="68" text-anchor="middle" font-size="14" fill="#8B8168">GIGA R1 WiFi 控制、DAC81416-08EVM 驅動、ADS9324EVM 讀取、MEMS 探針 + 多級 MZI 晶片</text>
 
   <!-- Legend -->
-  <line x1="60" y1="100" x2="88" y2="100" stroke="#B8860B" stroke-width="2.4" marker-end="url(#ao)"/>
-  <text x="94" y="104" font-size="10.5" fill="#5B5342">光路</text>
-  <line x1="150" y1="100" x2="178" y2="100" stroke="#B5533C" stroke-width="2.4" marker-end="url(#ah)"/>
-  <text x="184" y="104" font-size="10.5" fill="#5B5342">驅動電壓</text>
-  <line x1="260" y1="100" x2="288" y2="100" stroke="#1F8A7D" stroke-width="2.4" marker-end="url(#aa)"/>
-  <text x="294" y="104" font-size="10.5" fill="#5B5342">類比量測</text>
-  <line x1="370" y1="100" x2="398" y2="100" stroke="#3A5BA8" stroke-width="2.4" marker-end="url(#ad)"/>
-  <text x="404" y="104" font-size="10.5" fill="#5B5342">數位控制</text>
-  <line x1="480" y1="100" x2="508" y2="100" stroke="#8B8168" stroke-width="1.8" stroke-dasharray="5 3" marker-end="url(#ap)"/>
-  <text x="514" y="104" font-size="10.5" fill="#5B5342">電源</text>
+  <line x1="60" y1="112" x2="92" y2="112" stroke="#B8860B" stroke-width="2.6" marker-end="url(#ao)"/>
+  <text x="98" y="117" font-size="13" fill="#5B5342">光路</text>
+  <line x1="170" y1="112" x2="202" y2="112" stroke="#B5533C" stroke-width="2.6" marker-end="url(#ah)"/>
+  <text x="208" y="117" font-size="13" fill="#5B5342">驅動電壓</text>
+  <line x1="300" y1="112" x2="332" y2="112" stroke="#1F8A7D" stroke-width="2.6" marker-end="url(#aa)"/>
+  <text x="338" y="117" font-size="13" fill="#5B5342">類比量測</text>
+  <line x1="430" y1="112" x2="462" y2="112" stroke="#3A5BA8" stroke-width="2.6" marker-end="url(#ad)"/>
+  <text x="468" y="117" font-size="13" fill="#5B5342">數位控制</text>
+  <line x1="560" y1="112" x2="592" y2="112" stroke="#8B8168" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#ap)"/>
+  <text x="598" y="117" font-size="13" fill="#5B5342">電源</text>
 
   <!-- ================================================================ -->
   <!--  Tunable Laser (top-right, above chip)                          -->
   <!-- ================================================================ -->
-  <rect x="1095" y="30" width="240" height="85" rx="8" fill="#FAF6EA" stroke="#C2AE7E" stroke-width="1.4"/>
-  <text x="1215" y="56" text-anchor="middle" font-size="14" font-weight="700" fill="#2E2A22">可調雷射</text>
-  <text x="1215" y="76" text-anchor="middle" font-size="11" fill="#5B5342">C-band・1550 nm</text>
-  <text x="1215" y="98" text-anchor="middle" font-size="10" fill="#8B8168">波長 / 功率：GIGA UART SCPI</text>
+  <rect x="1320" y="28" width="300" height="108" rx="9" fill="#FAF6EA" stroke="#C2AE7E" stroke-width="1.6"/>
+  <text x="1470" y="60" text-anchor="middle" font-size="17" font-weight="700" fill="#2E2A22">可調雷射</text>
+  <text x="1470" y="84" text-anchor="middle" font-size="13.5" fill="#5B5342">C-band・1550 nm</text>
+  <text x="1470" y="112" text-anchor="middle" font-size="11.5" fill="#8B8168">波長 / 功率：GIGA UART SCPI</text>
 
   <!-- ================================================================ -->
   <!--  Column 1: Host PC / Power                                      -->
   <!-- ================================================================ -->
 
   <!-- Host PC -->
-  <rect x="50" y="160" width="240" height="355" rx="8" fill="#E7ECF6" stroke="#3A5BA8" stroke-width="1.4"/>
-  <text x="170" y="188" text-anchor="middle" font-size="14" font-weight="700" fill="#3A5BA8">Host PC</text>
-  <text x="170" y="206" text-anchor="middle" font-size="11" fill="#5B5342">Python・USB CDC</text>
-  <rect x="68" y="222" width="204" height="24" rx="4" fill="#FFFDF7" stroke="#3A5BA8" stroke-width="0.8"/>
-  <text x="170" y="239" text-anchor="middle" font-size="10.5" fill="#5B5342">掃描序列設定 → 下達 GIGA</text>
-  <rect x="68" y="252" width="204" height="24" rx="4" fill="#FFFDF7" stroke="#3A5BA8" stroke-width="0.8"/>
-  <text x="170" y="269" text-anchor="middle" font-size="10.5" fill="#5B5342">資料紀錄（碼值・讀值・時間戳）</text>
-  <rect x="68" y="282" width="204" height="24" rx="4" fill="#FFFDF7" stroke="#3A5BA8" stroke-width="0.8"/>
-  <text x="170" y="299" text-anchor="middle" font-size="10.5" fill="#5B5342">擬合（自變數：V² / R_h）</text>
-  <rect x="68" y="312" width="204" height="24" rx="4" fill="#FFFDF7" stroke="#3A5BA8" stroke-width="0.8"/>
-  <text x="170" y="329" text-anchor="middle" font-size="10.5" fill="#5B5342">SAX 模型・凍結預測・留出驗證</text>
-  <rect x="68" y="342" width="204" height="24" rx="4" fill="#FFFDF7" stroke="#3A5BA8" stroke-width="0.8"/>
-  <text x="170" y="359" text-anchor="middle" font-size="10.5" fill="#5B5342">SDRAM 暫態波形倒出與分析</text>
-  <text x="170" y="392" text-anchor="middle" font-size="9.5" fill="#8B8168">不在即時迴路內</text>
-  <text x="170" y="408" text-anchor="middle" font-size="9.5" fill="#8B8168">不做雷射控制（已移至 GIGA）</text>
+  <rect x="50" y="190" width="290" height="330" rx="9" fill="#E7ECF6" stroke="#3A5BA8" stroke-width="1.6"/>
+  <text x="195" y="222" text-anchor="middle" font-size="17" font-weight="700" fill="#3A5BA8">Host PC</text>
+  <text x="195" y="244" text-anchor="middle" font-size="13.5" fill="#5B5342">Python・USB CDC</text>
+  <rect x="68" y="262" width="254" height="30" rx="5" fill="#FFFDF7" stroke="#3A5BA8" stroke-width="0.9"/>
+  <text x="195" y="283" text-anchor="middle" font-size="13" fill="#5B5342">掃描序列設定 → 下達 GIGA</text>
+  <rect x="68" y="298" width="254" height="30" rx="5" fill="#FFFDF7" stroke="#3A5BA8" stroke-width="0.9"/>
+  <text x="195" y="319" text-anchor="middle" font-size="13" fill="#5B5342">資料紀錄（碼值・讀值・時間戳）</text>
+  <rect x="68" y="334" width="254" height="30" rx="5" fill="#FFFDF7" stroke="#3A5BA8" stroke-width="0.9"/>
+  <text x="195" y="355" text-anchor="middle" font-size="13" fill="#5B5342">擬合（自變數：V² / R_h）</text>
+  <rect x="68" y="370" width="254" height="30" rx="5" fill="#FFFDF7" stroke="#3A5BA8" stroke-width="0.9"/>
+  <text x="195" y="391" text-anchor="middle" font-size="13" fill="#5B5342">SAX 模型・凍結預測・留出驗證</text>
+  <rect x="68" y="406" width="254" height="30" rx="5" fill="#FFFDF7" stroke="#3A5BA8" stroke-width="0.9"/>
+  <text x="195" y="427" text-anchor="middle" font-size="13" fill="#5B5342">SDRAM 暫態波形倒出與分析</text>
+  <text x="195" y="470" text-anchor="middle" font-size="11.5" fill="#8B8168">不在即時迴路內</text>
+  <text x="195" y="492" text-anchor="middle" font-size="11.5" fill="#8B8168">不做雷射控制（已移至 GIGA）</text>
 
   <!-- Power Supply -->
-  <rect x="50" y="650" width="240" height="120" rx="8" fill="#FFFDF7" stroke="#8B8168" stroke-width="1.4" stroke-dasharray="5 3"/>
-  <text x="170" y="676" text-anchor="middle" font-size="14" font-weight="700" fill="#5B5342">電源</text>
-  <text x="170" y="698" text-anchor="middle" font-size="11" fill="#5B5342">實驗室電源 60 V max（限流）</text>
-  <text x="170" y="716" text-anchor="middle" font-size="11" fill="#5B5342">DAC VCC 預設 40 V・被動板 VCC 參考</text>
-  <text x="170" y="734" text-anchor="middle" font-size="11" fill="#5B5342">LM2596S → 5.3 V → ADC J19</text>
-  <text x="170" y="752" text-anchor="middle" font-size="11" fill="#5B5342">GIGA：PC USB-C 供電</text>
+  <rect x="50" y="790" width="290" height="150" rx="9" fill="#FFFDF7" stroke="#8B8168" stroke-width="1.6" stroke-dasharray="6 4"/>
+  <text x="195" y="822" text-anchor="middle" font-size="17" font-weight="700" fill="#5B5342">電源</text>
+  <text x="195" y="850" text-anchor="middle" font-size="13.5" fill="#5B5342">實驗室電源 60 V max（限流）</text>
+  <text x="195" y="872" text-anchor="middle" font-size="13.5" fill="#5B5342">DAC VCC 預設 40 V・被動板 VCC 參考</text>
+  <text x="195" y="894" text-anchor="middle" font-size="13.5" fill="#5B5342">LM2596S → 5.3 V → ADC J19</text>
+  <text x="195" y="916" text-anchor="middle" font-size="13.5" fill="#5B5342">GIGA：PC USB-C 供電</text>
 
   <!-- ================================================================ -->
   <!--  Column 2: Arduino GIGA R1 WiFi                                 -->
   <!-- ================================================================ -->
-  <rect x="350" y="160" width="300" height="415" rx="8" fill="#E7ECF6" stroke="#3A5BA8" stroke-width="1.6"/>
-  <text x="500" y="188" text-anchor="middle" font-size="14" font-weight="700" fill="#3A5BA8">Arduino GIGA R1 WiFi</text>
-  <text x="500" y="206" text-anchor="middle" font-size="10.5" fill="#5B5342">STM32H747XI・Mbed OS・STM32 HAL（SPI DMA / Timer）</text>
-  <rect x="368" y="220" width="128" height="36" rx="5" fill="#FFFDF7" stroke="#3A5BA8" stroke-width="0.9"/>
-  <text x="432" y="236" text-anchor="middle" font-size="11" font-weight="600" fill="#2E2A22">M7 480 MHz</text>
-  <text x="432" y="250" text-anchor="middle" font-size="9" fill="#8B8168">ADC 收資料・DMA・USB</text>
-  <rect x="504" y="220" width="128" height="36" rx="5" fill="#FFFDF7" stroke="#3A5BA8" stroke-width="0.9"/>
-  <text x="568" y="236" text-anchor="middle" font-size="11" font-weight="600" fill="#2E2A22">M4 240 MHz</text>
-  <text x="568" y="250" text-anchor="middle" font-size="9" fill="#8B8168">DAC 掃描・安全限制</text>
-  <rect x="368" y="266" width="264" height="24" rx="5" fill="#FFFDF7" stroke="#3A5BA8" stroke-width="0.9"/>
-  <text x="500" y="283" text-anchor="middle" font-size="10.5" fill="#5B5342">8 MB SDRAM（暫態波形暫存）</text>
-  <rect x="368" y="296" width="264" height="24" rx="5" fill="#FFFDF7" stroke="#3A5BA8" stroke-width="0.9"/>
-  <text x="500" y="313" text-anchor="middle" font-size="10.5" fill="#5B5342">SPI-A（D10–D13）→ DAC・nLDAC・nRESET</text>
-  <rect x="368" y="326" width="264" height="24" rx="5" fill="#FFFDF7" stroke="#3A5BA8" stroke-width="0.9"/>
-  <text x="500" y="343" text-anchor="middle" font-size="10.5" fill="#5B5342">SPI-B（D89–D91）→ ADC・CONVST・BAS</text>
-  <rect x="368" y="356" width="264" height="24" rx="5" fill="#FFFDF7" stroke="#3A5BA8" stroke-width="0.9"/>
-  <text x="500" y="373" text-anchor="middle" font-size="10.5" fill="#5B5342">UART（Serial1）→ 雷射 SCPI</text>
-  <rect x="368" y="386" width="264" height="24" rx="5" fill="#FFFDF7" stroke="#3A5BA8" stroke-width="0.9"/>
-  <text x="500" y="403" text-anchor="middle" font-size="10.5" fill="#5B5342">USB CDC ← Host PC（命令 / 資料）</text>
-  <rect x="368" y="416" width="264" height="24" rx="5" fill="#FFFDF7" stroke="#3A5BA8" stroke-width="0.9"/>
-  <text x="500" y="433" text-anchor="middle" font-size="10.5" fill="#5B5342">GPIO → 被動板 MOS 開關（預留）</text>
-  <rect x="368" y="446" width="264" height="24" rx="5" fill="#FFFDF7" stroke="#3A5BA8" stroke-width="0.9"/>
-  <text x="500" y="463" text-anchor="middle" font-size="10.5" fill="#5B5342">內建 ADC ← 被動板分壓（校正 / 偵測）・載台溫度</text>
-  <rect x="368" y="476" width="264" height="24" rx="5" fill="#FFFDF7" stroke="#3A5BA8" stroke-width="0.9"/>
-  <text x="500" y="493" text-anchor="middle" font-size="10.5" fill="#5B5342">Watchdog・MAX_CODE・斜率限制・上電自檢</text>
-  <text x="500" y="530" text-anchor="middle" font-size="9.5" fill="#8B8168">兩核經共享記憶體溝通；韌體限制為第二道防線</text>
-  <text x="500" y="546" text-anchor="middle" font-size="9.5" fill="#8B8168">Watchdog 逾時 → 所有輸出歸零</text>
+  <rect x="400" y="190" width="360" height="485" rx="9" fill="#E7ECF6" stroke="#3A5BA8" stroke-width="1.8"/>
+  <text x="580" y="222" text-anchor="middle" font-size="17" font-weight="700" fill="#3A5BA8">Arduino GIGA R1 WiFi</text>
+  <text x="580" y="244" text-anchor="middle" font-size="13" fill="#5B5342">STM32H747XI・Mbed OS・STM32 HAL（SPI DMA / Timer）</text>
+  <rect x="418" y="260" width="156" height="44" rx="5" fill="#FFFDF7" stroke="#3A5BA8" stroke-width="0.9"/>
+  <text x="496" y="279" text-anchor="middle" font-size="13.5" font-weight="600" fill="#2E2A22">M7 480 MHz</text>
+  <text x="496" y="296" text-anchor="middle" font-size="11" fill="#8B8168">ADC 收資料・DMA・USB</text>
+  <rect x="586" y="260" width="156" height="44" rx="5" fill="#FFFDF7" stroke="#3A5BA8" stroke-width="0.9"/>
+  <text x="664" y="279" text-anchor="middle" font-size="13.5" font-weight="600" fill="#2E2A22">M4 240 MHz</text>
+  <text x="664" y="296" text-anchor="middle" font-size="11" fill="#8B8168">DAC 掃描・安全限制</text>
+  <rect x="418" y="316" width="324" height="30" rx="5" fill="#FFFDF7" stroke="#3A5BA8" stroke-width="0.9"/>
+  <text x="580" y="337" text-anchor="middle" font-size="13" fill="#5B5342">8 MB SDRAM（暫態波形暫存）</text>
+  <rect x="418" y="352" width="324" height="30" rx="5" fill="#FFFDF7" stroke="#3A5BA8" stroke-width="0.9"/>
+  <text x="580" y="373" text-anchor="middle" font-size="13" fill="#5B5342">SPI-A（D10–D13）→ DAC・nLDAC・nRESET</text>
+  <rect x="418" y="388" width="324" height="30" rx="5" fill="#FFFDF7" stroke="#3A5BA8" stroke-width="0.9"/>
+  <text x="580" y="409" text-anchor="middle" font-size="13" fill="#5B5342">SPI-B（D89–D91）→ ADC・CONVST・BAS</text>
+  <rect x="418" y="424" width="324" height="30" rx="5" fill="#FFFDF7" stroke="#3A5BA8" stroke-width="0.9"/>
+  <text x="580" y="445" text-anchor="middle" font-size="13" fill="#5B5342">UART（Serial1）→ 雷射 SCPI</text>
+  <rect x="418" y="460" width="324" height="30" rx="5" fill="#FFFDF7" stroke="#3A5BA8" stroke-width="0.9"/>
+  <text x="580" y="481" text-anchor="middle" font-size="13" fill="#5B5342">USB CDC ← Host PC（命令 / 資料）</text>
+  <rect x="418" y="496" width="324" height="30" rx="5" fill="#FFFDF7" stroke="#3A5BA8" stroke-width="0.9"/>
+  <text x="580" y="517" text-anchor="middle" font-size="13" fill="#5B5342">GPIO → 被動板 MOS 開關（預留）</text>
+  <rect x="418" y="532" width="324" height="30" rx="5" fill="#FFFDF7" stroke="#3A5BA8" stroke-width="0.9"/>
+  <text x="580" y="553" text-anchor="middle" font-size="13" fill="#5B5342">內建 ADC ← 被動板分壓（校正 / 偵測）・載台溫度</text>
+  <rect x="418" y="568" width="324" height="30" rx="5" fill="#FFFDF7" stroke="#3A5BA8" stroke-width="0.9"/>
+  <text x="580" y="589" text-anchor="middle" font-size="13" fill="#5B5342">Watchdog・MAX_CODE・斜率限制・上電自檢</text>
+  <text x="580" y="630" text-anchor="middle" font-size="11.5" fill="#8B8168">兩核經共享記憶體溝通；韌體限制為第二道防線</text>
+  <text x="580" y="652" text-anchor="middle" font-size="11.5" fill="#8B8168">Watchdog 逾時 → 所有輸出歸零</text>
 
   <!-- ================================================================ -->
   <!--  Column 3: DAC / Passive Board / ADC                            -->
   <!-- ================================================================ -->
 
   <!-- DAC81416-08EVM -->
-  <rect x="745" y="160" width="295" height="180" rx="8" fill="#F8E9E3" stroke="#B5533C" stroke-width="1.4"/>
-  <text x="892" y="186" text-anchor="middle" font-size="14" font-weight="700" fill="#B5533C">DAC81416-08EVM</text>
-  <text x="892" y="204" text-anchor="middle" font-size="11" fill="#5B5342">16 ch・20-bit・0–40 V</text>
-  <rect x="763" y="218" width="259" height="28" rx="5" fill="#FFFDF7" stroke="#B5533C" stroke-width="0.9"/>
-  <text x="892" y="237" text-anchor="middle" font-size="10.5" fill="#5B5342">CH0–7：heater 0–40 V（直接接晶片）</text>
-  <rect x="763" y="254" width="259" height="28" rx="5" fill="#FFFDF7" stroke="#B5533C" stroke-width="0.9"/>
-  <text x="892" y="273" text-anchor="middle" font-size="10.5" fill="#5B5342">CH8–11：probe 0–40 V（經被動分壓）</text>
-  <text x="892" y="304" text-anchor="middle" font-size="9.5" fill="#8B8168">CH12–15 備用（dither / 第二晶片）</text>
-  <text x="892" y="324" text-anchor="middle" font-size="9.5" fill="#8B8168">VCC 40 V（預設）・POR 歸零・過溫關斷・J18 開路</text>
+  <rect x="890" y="190" width="360" height="210" rx="9" fill="#F8E9E3" stroke="#B5533C" stroke-width="1.6"/>
+  <text x="1070" y="222" text-anchor="middle" font-size="17" font-weight="700" fill="#B5533C">DAC81416-08EVM</text>
+  <text x="1070" y="244" text-anchor="middle" font-size="13.5" fill="#5B5342">16 ch・20-bit・0–40 V</text>
+  <rect x="908" y="260" width="324" height="32" rx="5" fill="#FFFDF7" stroke="#B5533C" stroke-width="0.9"/>
+  <text x="1070" y="282" text-anchor="middle" font-size="13" fill="#5B5342">CH0–7：heater 0–40 V（直接接晶片）</text>
+  <rect x="908" y="300" width="324" height="32" rx="5" fill="#FFFDF7" stroke="#B5533C" stroke-width="0.9"/>
+  <text x="1070" y="322" text-anchor="middle" font-size="13" fill="#5B5342">CH8–11：probe 0–40 V（經被動分壓）</text>
+  <text x="1070" y="356" text-anchor="middle" font-size="11.5" fill="#8B8168">CH12–15 備用（dither / 第二晶片）</text>
+  <text x="1070" y="380" text-anchor="middle" font-size="11.5" fill="#8B8168">VCC 40 V（預設）・POR 歸零・過溫關斷・J18 開路</text>
 
   <!-- Passive Board -->
-  <rect x="745" y="385" width="295" height="175" rx="8" fill="#F8E9E3" stroke="#B5533C" stroke-width="1.4"/>
-  <text x="892" y="411" text-anchor="middle" font-size="13" font-weight="700" fill="#B5533C">被動轉接板</text>
-  <text x="892" y="428" text-anchor="middle" font-size="10" fill="#8B8168">無主動元件・無 MUX・預留 MOS 開關位置</text>
-  <rect x="763" y="438" width="259" height="24" rx="4" fill="#FFFDF7" stroke="#B5533C" stroke-width="0.8"/>
-  <text x="892" y="455" text-anchor="middle" font-size="10.5" fill="#5B5342">probe 分壓 → ≤ 7 V（參考可取 VDD–DAC）</text>
-  <rect x="763" y="468" width="259" height="24" rx="4" fill="#FFFDF7" stroke="#B5533C" stroke-width="0.8"/>
-  <text x="892" y="485" text-anchor="middle" font-size="10.5" fill="#5B5342">R_bot 抽頭 → ADC・分壓回授 → GIGA 內建 ADC</text>
-  <rect x="763" y="498" width="259" height="24" rx="4" fill="#FFFDF7" stroke="#B5533C" stroke-width="0.8"/>
-  <text x="892" y="515" text-anchor="middle" font-size="10.5" fill="#5B5342">heater shunt → ADC</text>
-  <rect x="763" y="528" width="259" height="24" rx="4" fill="#FFFDF7" stroke="#B5533C" stroke-width="0.8"/>
-  <text x="892" y="545" text-anchor="middle" font-size="10.5" fill="#5B5342">預留 MOS 開關（GPIO）・VCC 參考輸入</text>
+  <rect x="890" y="455" width="360" height="225" rx="9" fill="#F8E9E3" stroke="#B5533C" stroke-width="1.6"/>
+  <text x="1070" y="487" text-anchor="middle" font-size="16" font-weight="700" fill="#B5533C">被動轉接板</text>
+  <text x="1070" y="508" text-anchor="middle" font-size="12" fill="#8B8168">無主動元件・無 MUX・預留 MOS 開關位置</text>
+  <rect x="908" y="524" width="324" height="30" rx="5" fill="#FFFDF7" stroke="#B5533C" stroke-width="0.9"/>
+  <text x="1070" y="545" text-anchor="middle" font-size="13" fill="#5B5342">probe 分壓 → ≤ 7 V（參考可取 VDD–DAC）</text>
+  <rect x="908" y="560" width="324" height="30" rx="5" fill="#FFFDF7" stroke="#B5533C" stroke-width="0.9"/>
+  <text x="1070" y="581" text-anchor="middle" font-size="13" fill="#5B5342">R_bot 抽頭 → ADC・分壓回授 → GIGA 內建 ADC</text>
+  <rect x="908" y="596" width="324" height="30" rx="5" fill="#FFFDF7" stroke="#B5533C" stroke-width="0.9"/>
+  <text x="1070" y="617" text-anchor="middle" font-size="13" fill="#5B5342">heater shunt → ADC</text>
+  <rect x="908" y="632" width="324" height="30" rx="5" fill="#FFFDF7" stroke="#B5533C" stroke-width="0.9"/>
+  <text x="1070" y="653" text-anchor="middle" font-size="13" fill="#5B5342">預留 MOS 開關（GPIO）・VCC 參考輸入</text>
 
   <!-- ADS9324EVM -->
-  <rect x="745" y="640" width="295" height="195" rx="8" fill="#E4F1EE" stroke="#1F8A7D" stroke-width="1.4"/>
-  <text x="892" y="666" text-anchor="middle" font-size="14" font-weight="700" fill="#1F8A7D">ADS9324EVM（改板）</text>
-  <text x="892" y="684" text-anchor="middle" font-size="11" fill="#5B5342">16 ch 同步・16-bit SAR・1 MSPS/ch</text>
-  <rect x="763" y="698" width="259" height="24" rx="4" fill="#FFFDF7" stroke="#1F8A7D" stroke-width="0.8"/>
-  <text x="892" y="715" text-anchor="middle" font-size="10.5" fill="#5B5342">±2.5 V・1 MΩ・內建 4.096 V 參考</text>
-  <rect x="763" y="728" width="259" height="24" rx="4" fill="#FFFDF7" stroke="#1F8A7D" stroke-width="0.8"/>
-  <text x="892" y="745" text-anchor="middle" font-size="10.5" fill="#5B5342">1-lane SPI・J20/J21・IOVDD 3.3 V</text>
-  <rect x="763" y="758" width="259" height="24" rx="4" fill="#FFFDF7" stroke="#1F8A7D" stroke-width="0.8"/>
-  <text x="892" y="775" text-anchor="middle" font-size="10.5" fill="#5B5342">片上 oversampling・25 / 325 kHz BW</text>
-  <text x="892" y="806" text-anchor="middle" font-size="9.5" fill="#8B8168">J19 ← 5.3 V・板上 LDO 出 5 / 1.8 / 3.3 V</text>
-  <text x="892" y="822" text-anchor="middle" font-size="9.5" fill="#8B8168">BAT54A 輸入保護・排線 ≤ 10 cm</text>
+  <rect x="890" y="770" width="360" height="240" rx="9" fill="#E4F1EE" stroke="#1F8A7D" stroke-width="1.6"/>
+  <text x="1070" y="802" text-anchor="middle" font-size="17" font-weight="700" fill="#1F8A7D">ADS9324EVM（改板）</text>
+  <text x="1070" y="824" text-anchor="middle" font-size="13.5" fill="#5B5342">16 ch 同步・16-bit SAR・1 MSPS/ch</text>
+  <rect x="908" y="840" width="324" height="30" rx="5" fill="#FFFDF7" stroke="#1F8A7D" stroke-width="0.9"/>
+  <text x="1070" y="861" text-anchor="middle" font-size="13" fill="#5B5342">±2.5 V・1 MΩ・內建 4.096 V 參考</text>
+  <rect x="908" y="876" width="324" height="30" rx="5" fill="#FFFDF7" stroke="#1F8A7D" stroke-width="0.9"/>
+  <text x="1070" y="897" text-anchor="middle" font-size="13" fill="#5B5342">1-lane SPI・J20/J21・IOVDD 3.3 V</text>
+  <rect x="908" y="912" width="324" height="30" rx="5" fill="#FFFDF7" stroke="#1F8A7D" stroke-width="0.9"/>
+  <text x="1070" y="933" text-anchor="middle" font-size="13" fill="#5B5342">片上 oversampling・25 / 325 kHz BW</text>
+  <text x="1070" y="968" text-anchor="middle" font-size="11.5" fill="#8B8168">J19 ← 5.3 V・板上 LDO 出 5 / 1.8 / 3.3 V</text>
+  <text x="1070" y="990" text-anchor="middle" font-size="11.5" fill="#8B8168">BAT54A 輸入保護・排線 ≤ 10 cm</text>
 
   <!-- ================================================================ -->
   <!--  Column 4: Si Chip / PD                                         -->
   <!-- ================================================================ -->
 
   <!-- Si Photonic Chip (DUT) -->
-  <rect x="1095" y="160" width="240" height="420" rx="10" fill="#FAF6EA" stroke="#C2AE7E" stroke-width="1.6"/>
-  <text x="1215" y="188" text-anchor="middle" font-size="15" font-weight="700" fill="#2E2A22">Si 光子晶片</text>
-  <text x="1215" y="206" text-anchor="middle" font-size="11" fill="#5B5342">SOI 220 nm・1550 nm</text>
-  <rect x="1113" y="220" width="204" height="56" rx="6" fill="#FFFDF7" stroke="#C2AE7E" stroke-width="1.1"/>
-  <text x="1215" y="240" text-anchor="middle" font-size="12" font-weight="600" fill="#2E2A22">多顆可調 MZI</text>
-  <text x="1215" y="258" text-anchor="middle" font-size="10.5" fill="#5B5342">加熱器 θ₁ / θ₂・約 40 V → 2π</text>
-  <rect x="1113" y="288" width="204" height="56" rx="6" fill="#FFFDF7" stroke="#C2AE7E" stroke-width="1.1"/>
-  <text x="1215" y="308" text-anchor="middle" font-size="12" font-weight="600" fill="#2E2A22">4 支 MEMS 探針</text>
-  <text x="1215" y="324" text-anchor="middle" font-size="10.5" fill="#5B5342">可變 tap・0–7 V・pull-in 風險</text>
-  <rect x="1113" y="356" width="204" height="46" rx="6" fill="#FFFDF7" stroke="#C2AE7E" stroke-width="1.1"/>
-  <text x="1215" y="374" text-anchor="middle" font-size="12" font-weight="600" fill="#2E2A22">探針光柵（向上出光）</text>
-  <text x="1215" y="390" text-anchor="middle" font-size="10.5" fill="#5B5342">一柵一 PD</text>
-  <rect x="1113" y="414" width="204" height="46" rx="6" fill="#FFFDF7" stroke="#C2AE7E" stroke-width="1.1"/>
-  <text x="1215" y="432" text-anchor="middle" font-size="12" font-weight="600" fill="#2E2A22">主輸出光纖埠</text>
-  <text x="1215" y="448" text-anchor="middle" font-size="10.5" fill="#5B5342">解耦參考</text>
-  <rect x="1113" y="472" width="204" height="30" rx="6" fill="#FFFDF7" stroke="#C2AE7E" stroke-width="1.1"/>
-  <text x="1215" y="492" text-anchor="middle" font-size="10.5" fill="#5B5342">heater 回流端・串 shunt</text>
-  <text x="1215" y="530" text-anchor="middle" font-size="9.5" fill="#8B8168">載台熱敏電阻 → GIGA 內建 ADC</text>
-  <text x="1215" y="560" text-anchor="middle" font-size="9.5" fill="#8B8168">拓樸待確認（原團隊 netlist）</text>
+  <rect x="1320" y="190" width="300" height="470" rx="11" fill="#FAF6EA" stroke="#C2AE7E" stroke-width="1.8"/>
+  <text x="1470" y="222" text-anchor="middle" font-size="18" font-weight="700" fill="#2E2A22">Si 光子晶片</text>
+  <text x="1470" y="244" text-anchor="middle" font-size="13.5" fill="#5B5342">SOI 220 nm・1550 nm</text>
+  <rect x="1338" y="260" width="264" height="66" rx="6" fill="#FFFDF7" stroke="#C2AE7E" stroke-width="1.2"/>
+  <text x="1470" y="285" text-anchor="middle" font-size="14.5" font-weight="600" fill="#2E2A22">多顆可調 MZI</text>
+  <text x="1470" y="307" text-anchor="middle" font-size="13" fill="#5B5342">加熱器 θ₁ / θ₂・約 40 V → 2π</text>
+  <rect x="1338" y="338" width="264" height="66" rx="6" fill="#FFFDF7" stroke="#C2AE7E" stroke-width="1.2"/>
+  <text x="1470" y="363" text-anchor="middle" font-size="14.5" font-weight="600" fill="#2E2A22">4 支 MEMS 探針</text>
+  <text x="1470" y="385" text-anchor="middle" font-size="13" fill="#5B5342">可變 tap・0–7 V・pull-in 風險</text>
+  <rect x="1338" y="416" width="264" height="56" rx="6" fill="#FFFDF7" stroke="#C2AE7E" stroke-width="1.2"/>
+  <text x="1470" y="438" text-anchor="middle" font-size="14.5" font-weight="600" fill="#2E2A22">探針光柵（向上出光）</text>
+  <text x="1470" y="459" text-anchor="middle" font-size="13" fill="#5B5342">一柵一 PD</text>
+  <rect x="1338" y="484" width="264" height="56" rx="6" fill="#FFFDF7" stroke="#C2AE7E" stroke-width="1.2"/>
+  <text x="1470" y="506" text-anchor="middle" font-size="14.5" font-weight="600" fill="#2E2A22">主輸出光纖埠</text>
+  <text x="1470" y="527" text-anchor="middle" font-size="13" fill="#5B5342">解耦參考</text>
+  <rect x="1338" y="552" width="264" height="36" rx="6" fill="#FFFDF7" stroke="#C2AE7E" stroke-width="1.2"/>
+  <text x="1470" y="576" text-anchor="middle" font-size="13" fill="#5B5342">heater 回流端・串 shunt</text>
+  <text x="1470" y="616" text-anchor="middle" font-size="11.5" fill="#8B8168">載台熱敏電阻 → GIGA 內建 ADC</text>
+  <text x="1470" y="640" text-anchor="middle" font-size="11.5" fill="#8B8168">拓樸待確認（原團隊 netlist）</text>
 
   <!-- PD Modules -->
-  <rect x="1095" y="640" width="240" height="195" rx="8" fill="#E4F1EE" stroke="#1F8A7D" stroke-width="1.4"/>
-  <text x="1215" y="666" text-anchor="middle" font-size="13" font-weight="700" fill="#1F8A7D">PD 模組</text>
-  <text x="1215" y="686" text-anchor="middle" font-size="11" fill="#5B5342">InGaAs・帶放大（PDA10CS2）</text>
-  <rect x="1113" y="702" width="204" height="24" rx="4" fill="#FFFDF7" stroke="#1F8A7D" stroke-width="0.8"/>
-  <text x="1215" y="719" text-anchor="middle" font-size="10.5" fill="#5B5342">探針光柵 PD ×4</text>
-  <rect x="1113" y="732" width="204" height="24" rx="4" fill="#FFFDF7" stroke="#1F8A7D" stroke-width="0.8"/>
-  <text x="1215" y="749" text-anchor="middle" font-size="10.5" fill="#5B5342">主輸出 PD ×N</text>
-  <rect x="1113" y="762" width="204" height="24" rx="4" fill="#FFFDF7" stroke="#1F8A7D" stroke-width="0.8"/>
-  <text x="1215" y="779" text-anchor="middle" font-size="10.5" fill="#5B5342">輸入參考 PD ×1（晶片外分光）</text>
-  <text x="1215" y="806" text-anchor="middle" font-size="9.5" fill="#8B8168">一柵一 PD・TIA 增益配合條紋滿刻度</text>
-  <text x="1215" y="822" text-anchor="middle" font-size="9.5" fill="#8B8168">輸出 → ADC CH1–CH9</text>
+  <rect x="1320" y="770" width="300" height="240" rx="9" fill="#E4F1EE" stroke="#1F8A7D" stroke-width="1.6"/>
+  <text x="1470" y="802" text-anchor="middle" font-size="16" font-weight="700" fill="#1F8A7D">PD 模組</text>
+  <text x="1470" y="824" text-anchor="middle" font-size="13.5" fill="#5B5342">InGaAs・帶放大（PDA10CS2）</text>
+  <rect x="1338" y="840" width="264" height="30" rx="5" fill="#FFFDF7" stroke="#1F8A7D" stroke-width="0.9"/>
+  <text x="1470" y="861" text-anchor="middle" font-size="13" fill="#5B5342">探針光柵 PD ×4</text>
+  <rect x="1338" y="876" width="264" height="30" rx="5" fill="#FFFDF7" stroke="#1F8A7D" stroke-width="0.9"/>
+  <text x="1470" y="897" text-anchor="middle" font-size="13" fill="#5B5342">主輸出 PD ×N</text>
+  <rect x="1338" y="912" width="264" height="30" rx="5" fill="#FFFDF7" stroke="#1F8A7D" stroke-width="0.9"/>
+  <text x="1470" y="933" text-anchor="middle" font-size="13" fill="#5B5342">輸入參考 PD ×1（晶片外分光）</text>
+  <text x="1470" y="968" text-anchor="middle" font-size="11.5" fill="#8B8168">一柵一 PD・TIA 增益配合條紋滿刻度</text>
+  <text x="1470" y="990" text-anchor="middle" font-size="11.5" fill="#8B8168">輸出 → ADC CH1–CH9</text>
 
   <!-- ================================================================ -->
   <!--  CONNECTIONS                                                      -->
@@ -179,81 +179,82 @@
 
   <!-- ── Optical (gold) ── -->
 
-  <!-- Laser → Si Chip: vertical drop -->
-  <line x1="1215" y1="115" x2="1215" y2="156" stroke="#B8860B" stroke-width="2.2" marker-end="url(#ao)"/>
-  <text x="1225" y="140" font-size="10" fill="#B8860B">光纖輸入</text>
+  <!-- Laser → Si Chip -->
+  <line x1="1470" y1="136" x2="1470" y2="186" stroke="#B8860B" stroke-width="2.6" marker-end="url(#ao)"/>
+  <text x="1482" y="167" font-size="12" fill="#B8860B">光纖輸入</text>
 
-  <!-- Si Chip → PD: vertical drop -->
-  <line x1="1215" y1="580" x2="1215" y2="636" stroke="#B8860B" stroke-width="2.2" marker-end="url(#ao)"/>
-  <text x="1225" y="612" font-size="10" fill="#B8860B">光柵 / 光纖出光</text>
+  <!-- Si Chip → PD -->
+  <line x1="1470" y1="660" x2="1470" y2="766" stroke="#B8860B" stroke-width="2.6" marker-end="url(#ao)"/>
+  <text x="1482" y="718" font-size="12" fill="#B8860B">光柵 / 光纖出光</text>
 
   <!-- ── HV Drive (red) ── -->
 
   <!-- DAC → Chip: heater direct -->
-  <line x1="1040" y1="235" x2="1091" y2="235" stroke="#B5533C" stroke-width="2.2" marker-end="url(#ah)"/>
-  <text x="1066" y="226" text-anchor="middle" font-size="9" fill="#B5533C">heater 0–40 V</text>
+  <line x1="1250" y1="276" x2="1316" y2="276" stroke="#B5533C" stroke-width="2.6" marker-end="url(#ah)"/>
+  <text x="1283" y="265" text-anchor="middle" font-size="11" fill="#B5533C">heater 0–40 V</text>
 
   <!-- DAC → Passive Board: probe voltage, straight down -->
-  <line x1="892" y1="340" x2="892" y2="381" stroke="#B5533C" stroke-width="2.2" marker-end="url(#ah)"/>
-  <text x="900" y="366" font-size="10" fill="#B5533C">probe 0–40 V</text>
+  <line x1="1070" y1="400" x2="1070" y2="451" stroke="#B5533C" stroke-width="2.6" marker-end="url(#ah)"/>
+  <text x="1082" y="431" font-size="12" fill="#B5533C">probe 0–40 V</text>
 
   <!-- Passive Board → Chip: limited probe voltage -->
-  <line x1="1040" y1="430" x2="1091" y2="430" stroke="#B5533C" stroke-width="2.2" marker-end="url(#ah)"/>
-  <text x="1066" y="421" text-anchor="middle" font-size="9.5" fill="#B5533C">≤ 7 V</text>
+  <line x1="1250" y1="539" x2="1316" y2="539" stroke="#B5533C" stroke-width="2.6" marker-end="url(#ah)"/>
+  <text x="1283" y="528" text-anchor="middle" font-size="11.5" fill="#B5533C">≤ 7 V</text>
 
   <!-- ── Analog (teal) ── -->
 
   <!-- Passive Board → ADC: shunt & probe tap, straight down -->
-  <line x1="892" y1="560" x2="892" y2="636" stroke="#1F8A7D" stroke-width="2.2" marker-end="url(#aa)"/>
-  <text x="900" y="604" font-size="10" fill="#1F8A7D">shunt・探針抽頭</text>
+  <line x1="1070" y1="680" x2="1070" y2="766" stroke="#1F8A7D" stroke-width="2.6" marker-end="url(#aa)"/>
+  <text x="1082" y="728" font-size="12" fill="#1F8A7D">shunt・探針抽頭</text>
 
   <!-- Passive Board → GIGA built-in ADC: divider feedback -->
-  <line x1="745" y1="495" x2="654" y2="495" stroke="#1F8A7D" stroke-width="2" marker-end="url(#aa)"/>
-  <text x="698" y="509" text-anchor="middle" font-size="9" fill="#1F8A7D">分壓 → 內建 ADC</text>
+  <line x1="890" y1="565" x2="764" y2="565" stroke="#1F8A7D" stroke-width="2.4" marker-end="url(#aa)"/>
+  <text x="808" y="582" text-anchor="middle" font-size="11" fill="#1F8A7D">分壓 → 內建 ADC</text>
 
   <!-- PD → ADC: PD voltage ×N -->
-  <line x1="1091" y1="740" x2="1044" y2="740" stroke="#1F8A7D" stroke-width="2.2" marker-end="url(#aa)"/>
-  <line x1="1091" y1="760" x2="1044" y2="760" stroke="#1F8A7D" stroke-width="2.2" marker-end="url(#aa)"/>
-  <text x="1066" y="731" text-anchor="middle" font-size="9.5" fill="#1F8A7D">PD 電壓 ×N</text>
+  <line x1="1316" y1="880" x2="1254" y2="880" stroke="#1F8A7D" stroke-width="2.6" marker-end="url(#aa)"/>
+  <line x1="1316" y1="905" x2="1254" y2="905" stroke="#1F8A7D" stroke-width="2.6" marker-end="url(#aa)"/>
+  <text x="1283" y="869" text-anchor="middle" font-size="11" fill="#1F8A7D">PD 電壓 ×N</text>
 
   <!-- ── Digital (blue) ── -->
 
   <!-- Host PC → GIGA: USB CDC -->
-  <line x1="290" y1="450" x2="346" y2="450" stroke="#3A5BA8" stroke-width="2" marker-end="url(#ad)"/>
-  <text x="318" y="442" text-anchor="middle" font-size="10" fill="#3A5BA8">USB CDC</text>
+  <line x1="340" y1="400" x2="396" y2="400" stroke="#3A5BA8" stroke-width="2.4" marker-end="url(#ad)"/>
+  <text x="368" y="390" text-anchor="middle" font-size="11" fill="#3A5BA8">USB CDC</text>
 
   <!-- GIGA → Laser: UART SCPI, routed across the top -->
-  <path d="M600,160 L600,72 L1091,72" fill="none" stroke="#3A5BA8" stroke-width="2" marker-end="url(#ad)"/>
-  <text x="845" y="66" text-anchor="middle" font-size="10" fill="#3A5BA8">UART SCPI（波長 / 功率）</text>
+  <path d="M700,190 L700,86 L1316,86" fill="none" stroke="#3A5BA8" stroke-width="2.4" marker-end="url(#ad)"/>
+  <text x="1010" y="104" text-anchor="middle" font-size="12" fill="#3A5BA8">UART SCPI（波長 / 功率）</text>
 
   <!-- GIGA → DAC: SPI-A -->
-  <line x1="650" y1="255" x2="741" y2="255" stroke="#3A5BA8" stroke-width="2" marker-end="url(#ad)"/>
-  <text x="698" y="247" text-anchor="middle" font-size="9.5" fill="#3A5BA8">SPI-A</text>
-  <text x="698" y="269" text-anchor="middle" font-size="9" fill="#3A5BA8">nLDAC・nRESET</text>
+  <line x1="760" y1="330" x2="886" y2="330" stroke="#3A5BA8" stroke-width="2.4" marker-end="url(#ad)"/>
+  <text x="808" y="320" text-anchor="middle" font-size="11.5" fill="#3A5BA8">SPI-A</text>
+  <text x="808" y="347" text-anchor="middle" font-size="11" fill="#3A5BA8">nLDAC・nRESET</text>
 
   <!-- GIGA → Passive Board: GPIO (reserved MOS switch) -->
-  <line x1="650" y1="460" x2="741" y2="460" stroke="#3A5BA8" stroke-width="2" marker-end="url(#ad)"/>
-  <text x="698" y="452" text-anchor="middle" font-size="9" fill="#3A5BA8">GPIO・預留 MOS 開關</text>
+  <line x1="760" y1="515" x2="886" y2="515" stroke="#3A5BA8" stroke-width="2.4" marker-end="url(#ad)"/>
+  <text x="808" y="505" text-anchor="middle" font-size="11.5" fill="#3A5BA8">GPIO</text>
+  <text x="808" y="532" text-anchor="middle" font-size="11" fill="#3A5BA8">預留 MOS 開關</text>
 
   <!-- GIGA → ADC: SPI-B, routed below -->
-  <path d="M500,575 L500,740 L741,740" fill="none" stroke="#3A5BA8" stroke-width="2" marker-end="url(#ad)"/>
-  <text x="620" y="733" text-anchor="middle" font-size="10" fill="#3A5BA8">SPI-B・CONVST・BAS</text>
+  <path d="M580,675 L580,891 L886,891" fill="none" stroke="#3A5BA8" stroke-width="2.4" marker-end="url(#ad)"/>
+  <text x="740" y="881" text-anchor="middle" font-size="12" fill="#3A5BA8">SPI-B・CONVST・BAS</text>
 
   <!-- ── Power (gray dashed) ── -->
 
-  <!-- Power → ADC: 5.3 V trunk along y=690 -->
-  <path d="M290,690 L741,690" fill="none" stroke="#8B8168" stroke-width="1.6" stroke-dasharray="5 3" marker-end="url(#ap)"/>
-  <text x="318" y="683" text-anchor="middle" font-size="9.5" fill="#8B8168">5.3 V</text>
+  <!-- Power → ADC: 5.3 V trunk along y=830 -->
+  <path d="M340,830 L886,830" fill="none" stroke="#8B8168" stroke-width="1.8" stroke-dasharray="6 4" marker-end="url(#ap)"/>
+  <text x="368" y="821" text-anchor="middle" font-size="11.5" fill="#8B8168">5.3 V</text>
 
-  <!-- Power → DAC VCC: branch up at x=700 -->
-  <path d="M700,690 L700,300 L741,300" fill="none" stroke="#8B8168" stroke-width="1.6" stroke-dasharray="5 3" marker-end="url(#ap)"/>
-  <text x="694" y="296" text-anchor="end" font-size="9.5" fill="#8B8168">40 V（預設）</text>
+  <!-- Power → DAC VCC: riser at x=862, kept clear of the digital labels -->
+  <path d="M862,830 L862,380 L886,380" fill="none" stroke="#8B8168" stroke-width="1.8" stroke-dasharray="6 4" marker-end="url(#ap)"/>
+  <text x="852" y="374" text-anchor="end" font-size="11.5" fill="#8B8168">40 V（預設）</text>
 
   <!-- Power → Passive Board: VCC reference branch -->
-  <path d="M700,520 L741,520" fill="none" stroke="#8B8168" stroke-width="1.6" stroke-dasharray="5 3" marker-end="url(#ap)"/>
-  <text x="694" y="530" text-anchor="end" font-size="9" fill="#8B8168">VCC 參考</text>
+  <path d="M862,625 L886,625" fill="none" stroke="#8B8168" stroke-width="1.8" stroke-dasharray="6 4" marker-end="url(#ap)"/>
+  <text x="852" y="619" text-anchor="end" font-size="11" fill="#8B8168">VCC 參考</text>
 
   <!-- ── Footer ── -->
-  <text x="680" y="878" text-anchor="middle" font-size="10" fill="#8B8168">探針上限由 VCC × 分壓比在硬體上決定；MCU 重置或斷電時 DAC 輸出歸零（nRESET 外部下拉）</text>
-  <text x="680" y="896" text-anchor="middle" font-size="10" fill="#8B8168">v3・GIGA R1 WiFi + ADS9324EVM（改板）+ DAC81416-08EVM・2026-10-10</text>
+  <text x="835" y="1060" text-anchor="middle" font-size="12" fill="#8B8168">探針上限由 VCC × 分壓比在硬體上決定；MCU 重置或斷電時 DAC 輸出歸零（nRESET 外部下拉）</text>
+  <text x="835" y="1082" text-anchor="middle" font-size="12" fill="#8B8168">v3・GIGA R1 WiFi + ADS9324EVM（改板）+ DAC81416-08EVM・2026-10-10</text>
 </svg>

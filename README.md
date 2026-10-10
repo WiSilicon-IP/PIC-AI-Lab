@@ -20,7 +20,7 @@ PIC 量測系統是一套針對 **SOI 220 nm 矽光子（PIC）晶片** 設計�
 
 ## 系統架構
 
-![PIC 量測系統架構：Host PC、GIGA R1、DAC81416-08EVM、ADS9324EVM、PD 模組、可調雷射與 Si 光子晶片之間的連線，含光路、驅動電壓、類比量測、數位控制與電源五類訊號](docs/img/system-arch.svg?v=20261010)
+![PIC 量測系統架構：Host PC、GIGA R1、DAC81416-08EVM、ADS9324EVM、PD 模組、可調雷射與 Si 光子晶片之間的連線，含光路、驅動電壓、類比量測、數位控制與電源五類訊號](docs/img/system-arch.svg?v=20261010b)
 
 系統骨架：MCU 不直接驅動高壓，所有探針上限由 VCC 與被動分壓比在硬體上決定，韌體改不掉。
 MCU 重置或斷電時 DAC 輸出歸零（nRESET 外部下拉）。完整規格見
