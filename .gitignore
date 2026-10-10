@@ -1,0 +1,31 @@
+# Build outputs
+firmware/build/
+firmware/.pio/
+sw/__pycache__/
+sw/*.pyc
+sw/.venv/
+
+# IDE
+.vscode/
+.idea/
+*.code-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temp
+*.tmp
+*.bak
+*~
+
+# Data files (generated during measurement)
+data/
+*.csv
+*.hdf5
+*.npy
+
+# Local config
+local.mk
+.env
