@@ -1,10 +1,10 @@
 # PIC-AI-Lab — PIC 智慧實驗平台：從 AI 自動量測、自動校正到光子運算
 
-PIC-AI-Lab 是一套以 **SOI 220 nm 矽光子（PIC）晶片** 為對象的智慧實驗平台，目標分三個階段：
+<small><small>PIC-AI-Lab 是一套以 **SOI 220 nm 矽光子（PIC）晶片** 為對象的智慧實驗平台，目標分三個階段：
 讓 AI 自動量測晶片、自動校正晶片，最後用晶片上的 **MMI / MZI 網路做運算**。
 待測晶片含 **多顆可調 MZI 分光器** 與 **4 支 MEMS 光探針**；硬體以
 **Arduino GIGA R1 WiFi（STM32H747）** 為控制核心，搭配 **DAC81416-08EVM** 驅動加熱器與探針，
-**ADS9324EVM（改板）** 讀取 16 通道光功率與電壓訊號。
+**ADS9324EVM（改板）** 讀取 16 通道光功率與電壓訊號。</small></small>
 
 ## 三階段路線圖
 
@@ -14,8 +14,8 @@ PIC-AI-Lab 是一套以 **SOI 220 nm 矽光子（PIC）晶片** 為對象的智�
 | **2. AI 自動校正** | 自動找到每顆 MZI 的 V₂π、R\_h 與探針工作點，並追蹤漂移 | 閉迴路控制（量測 → 模型 → 下一步電壓）、SAX 模型與留出驗證、溫度與雷射漂移補償 | 規劃中 |
 | **3. AI 光子運算** | 以校正好的 MMI / MZI 網路執行矩陣運算 | 權重 → 相位 → 電壓映射、線上微調、運算結果回讀與誤差分析 | 規劃中 |
 
-階段一的量測系統是後兩個階段的基礎：校正與運算都建立在同一套 DAC / ADC / 韌體 / Python 骨架上，
-只是把 Host PC 端的「掃描腳本」換成「校正迴路」與「運算排程」。以下為階段一的系統規格。
+<small><small>階段一的量測系統是後兩個階段的基礎：校正與運算都建立在同一套 DAC / ADC / 韌體 / Python 骨架上，
+只是把 Host PC 端的「掃描腳本」換成「校正迴路」與「運算排程」。以下為階段一的系統規格。</small></small>
 
 ## 階段一：量測系統
 
@@ -30,15 +30,15 @@ PIC-AI-Lab 是一套以 **SOI 220 nm 矽光子（PIC）晶片** 為對象的智�
 | 光偵測器 | InGaAs PD 模組（PDA10CS2） | 一柵一 PD，最多 4 探針 + 主輸出 + 參考 |
 | Host PC | Python 掃描腳本、SAX 模型、擬合 | USB CDC，不在即時迴路內（雷射由 GIGA UART 控制） |
 | 電源 | 60 V max 實驗室電源（限流）→ DAC VCC 預設 40 V | LM2596S 降壓 5.3 V → ADS9324EVM |
-| 狀態 | **v3 規劃值，零件待購、datasheet 待核** | 2026-10-08 |
+| 狀態 | **v3 規劃值，零件待購、datasheet 待核** | 2026-10-10 |
 
 ### 系統架構
 
 ![PIC-AI-Lab 階段一量測系統架構：Host PC、GIGA R1、DAC81416-08EVM、ADS9324EVM、PD 模組、可調雷射與 Si 光子晶片之間的連線，含光路、驅動電壓、類比量測、數位控制與電源五類訊號](docs/img/system-arch.svg?v=20261010c)
 
-系統骨架：MCU 不直接驅動高壓，所有探針上限由 VCC 與被動分壓比在硬體上決定，韌體改不掉。
+<small><small>系統骨架：MCU 不直接驅動高壓，所有探針上限由 VCC 與被動分壓比在硬體上決定，韌體改不掉。
 MCU 重置或斷電時 DAC 輸出歸零（nRESET 外部下拉）。完整規格見
-[`docs/pic-test-system-spec.html`](docs/pic-test-system-spec.html)。
+[`docs/pic-test-system-spec.html`](docs/pic-test-system-spec.html)。</small></small>
 
 #### 責任分層
 
@@ -81,7 +81,7 @@ MCU 重置或斷電時 DAC 輸出歸零（nRESET 外部下拉）。完整規格�
 
 #### 相位解析度估算
 
-MZI 輸出 I ≈ (I₀/2)(1 + V cos φ)，正交點 dI/dφ ≈ I₀V/2。條紋擺幅佔半滿刻度時：
+<small><small>MZI 輸出 I ≈ (I₀/2)(1 + V cos φ)，正交點 dI/dφ ≈ I₀V/2。條紋擺幅佔半滿刻度時：</small></small>
 
 | | ADS9324（原生 1 MSPS） | ADS9324 降頻到 4 kSPS | ADS131M08（4 kSPS，v2） |
 |---|---|---|---|
@@ -89,7 +89,7 @@ MZI 輸出 I ≈ (I₀/2)(1 + V cos φ)，正交點 dI/dφ ≈ I₀V/2。條紋�
 | rms 雜訊 | 4×10⁻⁵ | 約 1×10⁻⁵ | 8×10⁻⁶ |
 | 單點相位解析度 | ≈ 80 µrad | ≈ 15–25 µrad | ≈ 16 µrad |
 
-雷射功率漂移與熱漂移通常是 mrad 等級（比上面大兩個數量級），SNR 不是選型的決定因素；通道數與頻寬才是。
+<small><small>雷射功率漂移與熱漂移通常是 mrad 等級（比上面大兩個數量級），SNR 不是選型的決定因素；通道數與頻寬才是。</small></small>
 
 ### 電源樹
 
@@ -105,7 +105,7 @@ MZI 輸出 I ≈ (I₀/2)(1 + V cos φ)，正交點 dI/dφ ≈ I₀V/2。條紋�
 
 ### ADS9324EVM 改板重點
 
-EVM（DC392）為 FMC + FPGA 設計，接 3.3 V MCU 需五項改板：
+<small><small>EVM（DC392）為 FMC + FPGA 設計，接 3.3 V MCU 需五項改板：</small></small>
 
 1. **電源改外接** — JP1 跳到 [2-3] EXT\_PWR；J19 端子台接 5.2–5.5 V。
 2. **IOVDD 改 3.3 V** — U4 貼 TPS7A2033PDBVR、R76 貼 0 Ω、R75 拆掉。
@@ -170,4 +170,5 @@ EVM（DC392）為 FMC + FPGA 設計，接 3.3 V MCU 需五項改板：
 |---|---|---|---|---|
 | v1 | — | PYNQ-Z2 | ΔΣ ADC | 初始規劃 |
 | v2 | — | ESP32-S3 | ADS131M08（8 ch，24-bit ΔΣ） | 改用 MCU 方案 |
-| **v3** | 2026-10-08 | **GIGA R1 WiFi** | **ADS9324**（16 ch，16-bit SAR） | 通道數 ↑、暫態頻寬 ↑、SDRAM 暫存 |
+| v3 | 2026-10-08 | GIGA R1 WiFi | ADS9324（16 ch，16-bit SAR） | 通道數 ↑、暫態頻寬 ↑、SDRAM 暫存 |
+| **v3.1** | 2026-10-10 | **GIGA R1 WiFi** | **ADS9324** | 更名 PIC-AI-Lab、三階段路線圖、電源 60 V / VCC 預設 40 V、雷射改 GIGA UART SCPI、被動板 GPIO 與分壓回授 |
