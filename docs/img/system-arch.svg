@@ -34,7 +34,7 @@
   <rect x="30" y="110" width="210" height="76" rx="8" fill="#FAF6EA" stroke="#C2AE7E" stroke-width="1.4"/>
   <text x="135" y="136" text-anchor="middle" font-size="14" font-weight="700" fill="#2E2A22">可調雷射</text>
   <text x="135" y="154" text-anchor="middle" font-size="11" fill="#5B5342">C-band・1550 nm</text>
-  <text x="135" y="172" text-anchor="middle" font-size="10" fill="#8B8168">波長 / 功率：SCPI over LAN</text>
+  <text x="135" y="172" text-anchor="middle" font-size="10" fill="#8B8168">波長 / 功率：GIGA UART SCPI</text>
 
   <!-- DAC81416-08EVM -->
   <rect x="300" y="110" width="260" height="160" rx="8" fill="#F8E9E3" stroke="#B5533C" stroke-width="1.4"/>
@@ -92,7 +92,7 @@
   <rect x="318" y="418" width="224" height="26" rx="5" fill="#FFFDF7" stroke="#3A5BA8" stroke-width="0.9"/>
   <text x="430" y="436" text-anchor="middle" font-size="10.5" fill="#5B5342">8 MB SDRAM（暫態波形暫存）</text>
   <rect x="318" y="450" width="224" height="26" rx="5" fill="#FFFDF7" stroke="#3A5BA8" stroke-width="0.9"/>
-  <text x="430" y="468" text-anchor="middle" font-size="10.5" fill="#5B5342">SPI-A → DAC　SPI-B → ADC</text>
+  <text x="430" y="468" text-anchor="middle" font-size="10.5" fill="#5B5342">SPI-A→DAC　SPI-B→ADC　UART→Laser</text>
 
   <!-- Passive Board — positioned between DAC/Chip and ADC/PD -->
   <rect x="630" y="310" width="180" height="140" rx="8" fill="#F8E9E3" stroke="#B5533C" stroke-width="1.4"/>
@@ -184,9 +184,9 @@
   <line x1="240" y1="380" x2="296" y2="380" stroke="#3A5BA8" stroke-width="2" marker-end="url(#ad)"/>
   <text x="255" y="372" font-size="10" fill="#3A5BA8">USB CDC</text>
 
-  <!-- Host PC → Laser: LAN/SCPI -->
-  <line x1="135" y1="320" x2="135" y2="190" stroke="#3A5BA8" stroke-width="2" marker-end="url(#ad)"/>
-  <text x="143" y="260" font-size="10" fill="#3A5BA8">LAN / SCPI</text>
+  <!-- GIGA → Laser: UART SCPI, route through gap between rows 1 & 2 -->
+  <path d="M350,320 L350,290 L135,290 L135,190" fill="none" stroke="#3A5BA8" stroke-width="2" marker-end="url(#ad)"/>
+  <text x="240" y="284" font-size="10" fill="#3A5BA8">UART SCPI</text>
 
   <!-- GIGA → DAC: SPI-A (vertical, through gap) -->
   <line x1="430" y1="320" x2="430" y2="274" stroke="#3A5BA8" stroke-width="2" marker-end="url(#ad)"/>

@@ -14,7 +14,7 @@ PIC 量測系統是一套針對 **SOI 220 nm 矽光子（PIC）晶片** 設計�
 | 穩態相位解析度 | ≈ 15–25 µrad（降頻 + 平均） | 片上 oversampling 至 4 kSPS |
 | 暫態頻寬 | ≤ 325 kHz | 加熱器熱時間常數、探針機械響應 |
 | 光偵測器 | InGaAs PD 模組（PDA10CS2） | 一柵一 PD，最多 4 探針 + 主輸出 + 參考 |
-| Host PC | Python 掃描腳本、SAX 模型、擬合 | USB CDC，不在即時迴路內 |
+| Host PC | Python 掃描腳本、SAX 模型、擬合 | USB CDC，不在即時迴路內（雷射由 GIGA UART 控制） |
 | 電源 | 36 V 實驗室電源（限流）→ DAC VCC | LM2596S 降壓 5.3 V → ADS9324EVM |
 | 狀態 | **v3 規劃值，零件待購、datasheet 待核** | 2026-10-08 |
 
@@ -30,8 +30,8 @@ MCU 重置或斷電時 DAC 輸出歸零（nRESET 外部下拉）。完整規格�
 
 | 層級 | 負責 | 不負責 |
 |---|---|---|
-| Host PC | 掃描設定、資料紀錄、擬合、SAX 模型、凍結預測與留出驗證、雷射控制 | 任何需要即時時序的動作 |
-| GIGA R1 韌體 | DAC 寫入、settle 等待、ADC 取樣（CONVST / BAS / DMA）、平均與標準差、暫態波形暫存於 SDRAM、MAX\_CODE 與斜率限制、watchdog、上電自檢 | 模型與決策 |
+| Host PC | 掃描設定、資料紀錄、擬合、SAX 模型、凍結預測與留出驗證 | 任何需要即時時序的動作（含雷射控制） |
+| GIGA R1 韌體 | DAC 寫入、settle 等待、ADC 取樣（CONVST / BAS / DMA）、平均與標準差、暫態波形暫存於 SDRAM、MAX\_CODE 與斜率限制、watchdog、上電自檢、**雷射控制（UART SCPI）** | 模型與決策 |
 | 硬體（DAC EVM、被動轉接、電源） | POR / nRESET 歸零、探針分壓上限、電源限流、過溫關斷 | 最後一道防線，不依賴軟體 |
 
 ### 主要元件

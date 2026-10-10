@@ -22,11 +22,12 @@
 - **SPI 分離**：SPI-A（主排針 D10–D13）專用 DAC，SPI-B（D89–D91）專用 ADC，不共用匯流排。
 - **CONVST 由硬體 timer 產生**，不依賴軟體延遲，確保取樣時序精確。
 - **暫態波形存 SDRAM**，再經 USB CDC 倒出；不做即時串流。
+- **雷射控制**：可調雷射由 GIGA UART（Serial1/2/3）以 SCPI 文字命令控制波長與功率，不經 Host PC。若雷射為 RS-232 介面需加 MAX3232 電壓轉換。
 - Arduino core 建在 Mbed OS 上，SPI DMA 與 timer 觸發需直接使用 STM32 HAL。
 
 ## 3. Host PC 軟體（Python）
 
-- Host PC 不在即時迴路內，只負責掃描設定、資料紀錄、擬合與模型。
+- Host PC 不在即時迴路內，只負責掃描設定、資料紀錄、擬合與模型。雷射控制已移至 GIGA 韌體。
 - 通訊協定：USB CDC，文字命令 / 二進位資料。
 - 資料格式：每筆量測包含 DAC 碼值、ADC 讀值、時間戳。
 - 擬合自變數用實測功率（V² / R_h），不用電壓。
